@@ -1,29 +1,38 @@
 {
-	"name": "frontend",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
     "dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "biome check"
-	},
-	"dependencies": {
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-toast": "^1.2.2",
+    "@tabler/icons-react": "^3.22.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "core": "*",
-		"next": "15.0.3",
-		"react": "19.0.0-rc-66855b96-20241106",
-		"react-dom": "19.0.0-rc-66855b96-20241106",
-		"react-qr-code": "^2.0.15"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.9.4",
-		"@types/node": "^20",
-		"@types/react": "^18",
-		"@types/react-dom": "^18",
-		"eslint": "^8",
-		"eslint-config-next": "15.0.3",
-		"postcss": "^8",
-		"tailwindcss": "^3.4.1",
-		"typescript": "^5"
-	}
+    "lucide-react": "^0.460.0",
+    "next": "15.0.3",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react-qr-code": "^2.0.15",
+    "tailwind-merge": "^2.5.4",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.16.0",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint-config-next": "15.0.3",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.12.0",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5",
+    "typescript-eslint": "^8.16.0"
+  }
 }

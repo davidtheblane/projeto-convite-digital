@@ -8,17 +8,17 @@ import {
 } from '@nestjs/common';
 import {
   complementarConvidado,
-  type Convidado,
   complementarEvento,
+  Convidado,
   Data,
-  type Evento,
+  Evento,
   Id,
 } from 'core';
 import { EventoPrisma } from './evento.prisma';
 
 @Controller('eventos')
 export class EventosController {
-  constructor(readonly repo: EventoPrisma) { }
+  constructor(readonly repo: EventoPrisma) {}
 
   @Post()
   async salvarEvento(@Body() evento: Evento) {
@@ -30,6 +30,7 @@ export class EventosController {
 
     const eventoCompleto = complementarEvento(this.deserializar(evento));
     await this.repo.salvar(eventoCompleto);
+    return this.serializar(eventoCompleto);
   }
 
   @Post(':alias/convidado')
@@ -49,7 +50,7 @@ export class EventosController {
 
   @Post('acessar')
   async acessarEvento(@Body() dados: { id: string; senha: string }) {
-    const evento = await this.repo.buscarPorId(dados.id);
+    const evento = await this.repo.buscarPorId(dados.id, true);
 
     if (!evento) {
       throw new HttpException('Evento não encontrado.', 400);

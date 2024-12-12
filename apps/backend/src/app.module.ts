@@ -6,6 +6,5 @@ import { DbModule } from './db/db.module';
 @Module({
   imports: [EventosModule, DbModule],
   controllers: [AppController],
-  providers: [],
 })
-export class AppModule { }
+export class AppModule {}

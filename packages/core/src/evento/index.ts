@@ -1,16 +1,15 @@
-import type Evento from "./model/Evento";
-import type Convidado from "./model/Convidado";
+import Evento from "./model/Evento";
+import Convidado from "./model/Convidado";
 
-import type criarEventoVazio from "./functions/criarEventoVazio";
-import type complementarEvento from "./functions/complementarEvento";
-import type criarConvidadoVazio from "./functions/criarConvidadoVazio";
-import type complementarConvidado from "./functions/complementarConvidado";
+import complementarConvidado from "./functions/complementarConvidado";
+import complementarEvento from "./functions/complementarEvento";
+import criarConvidadoVazio from "./functions/criarConvidadoVazio";
+import criarEventoVazio from "./functions/criarEventoVazio";
 
-export type {
-  Evento,
-  Convidado,
-  criarEventoVazio,
+export type { Evento, Convidado };
+export {
+  complementarConvidado,
   complementarEvento,
   criarConvidadoVazio,
-  complementarConvidado,
+  criarEventoVazio,
 };

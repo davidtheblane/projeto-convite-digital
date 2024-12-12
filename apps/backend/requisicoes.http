@@ -1,63 +1,62 @@
 GET http://localhost:4000/ping
 
-### get all events
+
+###
 GET http://localhost:4000/eventos
 
-### get by alias
-GET http://localhost:4000/eventos/evento-fullstack
+###
+GET http://localhost:4000/eventos/semana-formacao-dev
 
-### get by id
-GET http://localhost:4000/eventos/7922e4ce-9134-4afe-93c9-d19c457aceb6
+###
+GET http://localhost:4000/eventos/5e25282b-cde5-45ff-9436-c4320d7c2f6f
 
-### validate event
-GET http://localhost:4000/eventos/validar/evento-fullstack/de624e24-c70e-46c9-947b-ffb0b452dc54
+###
+GET http://localhost:4000/eventos/validar/evento-fullstack/5e25282b-cde5-45ff-9436-c4320d7c2f6f
 
-
-### access event
+###
 POST http://localhost:4000/eventos/acessar
 Content-Type: application/json
 
 {
-  "id": "2d72d7a2-18e8-4e2f-8a3e-314e894d8231",
-  "senha": "js20sdsds24"
+    "id": "65965e1c-8055-4795-b4a3-da93bbe97e31",
+    "senha": "familia2024"
 }
 
-### save guest
+###
 POST http://localhost:4000/eventos/reuniao-familia-oliveira/convidado
 Content-Type: application/json
 
 {
-  "id": "ee7a1dd3-5800-4921-a6d3-8cb1b1c007ab",
-  "nome": "Davi Bernardo",
-  "email": "davi.bernardo@gmail.com",
-  "confirmado": true,
-  "possuiAcompanhantes": true,
-  "qtdeAcompanhantes": 1
+    "id": "f7f5279c-e271-49e8-b1b2-b2d413f3044e",
+    "nome": "Leonardo Leitão",
+    "email": "leonardo@formacao.dev",
+    "confirmado": true,
+    "possuiAcompanhantes": true,
+    "qtdeAcompanhantes": 10
 }
 
-### save event
+###
 POST http://localhost:4000/eventos
 Content-Type: application/json
 
 {
-  "id": "ee7a1dd3-5800-4921-a6d3-8cb1b1c007ab",
-  "alias": "Torneio Boliche",
-  "nome": "Torneio de Boliche",
-  "data": "2025-12-25T09:00",
-  "local": "Clube de Boliche",
-  "descricao": "Clube de Boliche do Bolinha",
-  "senha": "boliche123",
-  "imagem": "https://play-lh.googleusercontent.com/mpBm6uxkAwCTaDL7us2iG0L-Lpxb6_vUYxJ5dBMSrKFGZoION2lUY5RkJYModzngyIk",
-  "imagemBackground": "https://images.prismic.io/vaultinum/0458a9f1-e149-4037-b9aa-aa4b4fb53c25_propriete-intellectuelle-code-source-protection-compressed.jpg?auto=compress,format&rect=0,0,2400,981&w=2400&h=981",
-  "publicoEsperado": 200,
-  "convidados": [
-      {
-        "id": "6851bd56-33e5-4ffe-ab61-7998e086ef79",
-        "nome": "Alice Silva",
-        "email": "alice@example.com",
-        "confirmado": true,
-        "possuiAcompanhantes": true,
-        "qtdeAcompanhantes": 5
-      }
+    "alias": "semana-formacao-dev",
+    "nome": "Evento Semana Formação.DEV",
+    "data": "2025-12-31T23:00",
+    "local": "São Paulo",
+    "descricao": "Evento de tecnologia",
+    "senha": "frameworks2025",
+    "imagem": "https://www.formacao.dev/assets/img/formacao-dev.png",
+    "imagemBackground": "https://www.formacao.dev/assets/img/formacao-dev-background.png",
+    "publicoEsperado": 1000,
+    "convidados": [
+        {
+            "nome": "Leonardo Leitão",
+            "email": "leonardo@formacao.dev",
+            "confirmado": true,
+            "possuiAcompanhantes": true,
+            "qtdeAcompanhantes": 10
+        }
     ]
+
 }

@@ -2,6 +2,6 @@
     "code-runner.executorMap": {
         "typescript": "npx tsx",
     },
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "editor.formatOnSave": true
 }

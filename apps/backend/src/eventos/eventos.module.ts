@@ -6,6 +6,6 @@ import { EventoPrisma } from './evento.prisma';
 @Module({
   imports: [DbModule],
   controllers: [EventosController],
-  providers: [EventoPrisma]
+  providers: [EventoPrisma],
 })
-export class EventosModule { }
+export class EventosModule {}

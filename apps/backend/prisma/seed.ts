@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client"
-import { eventos } from "core";
+import { PrismaClient } from '@prisma/client';
+import { eventos } from 'core';
 
 async function seed() {
   const prisma = new PrismaClient();
@@ -28,11 +28,10 @@ async function seed() {
           })),
         },
       },
-    })
-  })
+    });
+  });
 
   await Promise.all(transacoes);
-
 }
 
-seed()
+seed();
