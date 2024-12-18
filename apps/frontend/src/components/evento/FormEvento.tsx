@@ -78,6 +78,17 @@ export default function FormEvento() {
               })
             }
           />
+          <CampoEntrada
+            label="Endereço"
+            descricao="Digite o endereço do local"
+            value={evento.endereco ?? ""}
+            onChange={(e) =>
+              alterarEvento({
+                ...evento,
+                endereco: e.target.value,
+              })
+            }
+          />
         </div>
         <div className="flex flex-col gap-5">
           <CampoEntrada

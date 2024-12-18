@@ -50,6 +50,7 @@ export class EventoPrisma {
         descricao: true,
         data: true,
         local: true,
+        endereco: true,
         imagem: true,
         imagemBackground: true,
         alias: true,

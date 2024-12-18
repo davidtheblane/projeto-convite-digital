@@ -7,6 +7,7 @@ export default interface Evento {
   nome: string;
   data: Date;
   local: string;
+  endereco: string;
   descricao: string;
   imagem: string;
   imagemBackground: string;

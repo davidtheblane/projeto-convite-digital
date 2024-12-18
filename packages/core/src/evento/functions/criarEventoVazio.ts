@@ -8,6 +8,7 @@ export default function criarEventoVazio(): Partial<Evento> {
     descricao: "",
     data: new Date(),
     local: "",
+    endereco: "",
     publicoEsperado: 1,
     imagem: "",
     imagemBackground: "",

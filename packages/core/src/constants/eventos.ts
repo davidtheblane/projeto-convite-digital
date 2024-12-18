@@ -8,6 +8,7 @@ const eventos: Evento[] = [
     nome: "Evento de Desenvolvimento Fullstack",
     data: new Date("2024-12-01T10:00:00Z"),
     local: "São Paulo, SP",
+    endereco: "Av. Paulista, 123",
     descricao:
       "Um evento completo para aprender desenvolvimento fullstack do zero.",
     imagem:
@@ -49,6 +50,7 @@ const eventos: Evento[] = [
     nome: "Workshop Avançado de JavaScript",
     data: new Date("2024-11-20T15:00:00Z"),
     local: "Rio de Janeiro, RJ",
+    endereco: "Av. Paulista, 123",
     descricao: "Um workshop avançado para programadores JavaScript.",
     imagem:
       "https://www.datocms-assets.com/48401/1628644950-javascript.png?auto=format&fit=max&w=1200",
@@ -81,6 +83,7 @@ const eventos: Evento[] = [
     nome: "Bootcamp de Desenvolvimento Frontend",
     data: new Date("2024-11-15T09:00:00Z"),
     local: "Belo Horizonte, MG",
+    endereco: "Av. Paulista, 123",
     descricao: "Aprenda a criar interfaces incríveis e responsivas.",
     imagem:
       "https://www.simplilearn.com/ice9/free_resources_article_thumb/recact_angular_vue.jpg",
@@ -121,6 +124,7 @@ const eventos: Evento[] = [
     nome: "Casamento do Alberto e Marina",
     data: new Date("2024-11-25T16:00:00Z"),
     local: "Florianópolis, SC",
+    endereco: "Av. Paulista, 123",
     descricao:
       "Celebração do casamento de Alberto e Marina com amigos e familiares.",
     imagem:
@@ -154,6 +158,7 @@ const eventos: Evento[] = [
     nome: "Aniversário do João - 30 Anos",
     data: new Date("2024-12-05T18:00:00Z"),
     local: "Curitiba, PR",
+    endereco: "Av. Paulista, 123",
     descricao:
       "Comemoração dos 30 anos de João com amigos próximos e familiares.",
     imagem:
@@ -187,6 +192,7 @@ const eventos: Evento[] = [
     nome: "Inauguração da Loja Estrela",
     data: new Date("2024-12-10T09:00:00Z"),
     local: "Porto Alegre, RS",
+    endereco: "Av. Paulista, 123",
     descricao:
       "Evento de inauguração da nova loja Estrela com brindes e promoções.",
     imagem:
@@ -220,6 +226,7 @@ const eventos: Evento[] = [
     nome: "Reunião da Família Oliveira",
     data: new Date("2024-12-15T12:00:00Z"),
     local: "Salvador, BA",
+    endereco: "Av. Paulista, 123",
     descricao: "Reunião de fim de ano da família Oliveira.",
     imagem:
       "https://www.themonastery.org/assets/themonastery/blog/scaled/duggars.jpg",

@@ -13,6 +13,7 @@ async function seed() {
         nome: evento.nome,
         data: evento.data,
         local: evento.local,
+        endereco: evento.endereco,
         descricao: evento.descricao,
         imagem: evento.imagem,
         imagemBackground: evento.imagemBackground,

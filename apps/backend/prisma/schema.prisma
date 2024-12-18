@@ -17,6 +17,7 @@ model Evento {
   senha            String
   data             DateTime
   local            String
+  endereco         String           
   descricao        String
   imagem           String
   imagemBackground String
