@@ -9,6 +9,8 @@ export default interface Evento {
   local: string;
   endereco: string;
   descricao: string;
+  chavePix: string;
+  monetize: boolean;
   imagem: string;
   imagemBackground: string;
   publicoEsperado: number;

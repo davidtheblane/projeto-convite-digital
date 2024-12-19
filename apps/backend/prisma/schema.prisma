@@ -17,7 +17,9 @@ model Evento {
   senha            String
   data             DateTime
   local            String
-  endereco         String           
+  endereco         String
+  monetize         Boolean
+  chavePix         String           
   descricao        String
   imagem           String
   imagemBackground String

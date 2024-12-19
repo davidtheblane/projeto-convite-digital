@@ -14,6 +14,8 @@ async function seed() {
         data: evento.data,
         local: evento.local,
         endereco: evento.endereco,
+        monetize: evento.monetize,
+        chavePix: evento.chavePix,
         descricao: evento.descricao,
         imagem: evento.imagem,
         imagemBackground: evento.imagemBackground,

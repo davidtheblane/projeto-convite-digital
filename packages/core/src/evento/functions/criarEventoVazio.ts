@@ -11,6 +11,8 @@ export default function criarEventoVazio(): Partial<Evento> {
     endereco: "",
     publicoEsperado: 1,
     imagem: "",
+    chavePix: "",
+    monetize: false,
     imagemBackground: "",
   };
 }

@@ -2,6 +2,7 @@ import useEvento from "@/data/hooks/useEvento";
 import Passos from "../shared/Passos";
 import CampoEntrada from "../shared/CampoEntrada";
 import { Alias, Data } from "core";
+import CampoSimNao from "../shared/CampoSimNao";
 
 export default function FormEvento() {
   const { evento, aliasValido, alterarEvento, salvarEvento } = useEvento();
@@ -137,6 +138,36 @@ export default function FormEvento() {
             type="number"
             min={1}
           />
+          <div className="flex gap-5">
+                  <CampoSimNao
+                    label="Receber Pagamentos?"
+                    value={evento.monetize ?? false}
+                    onChange={(valor) =>
+                      alterarEvento({
+                        ...evento,
+                        monetize: valor,
+                      })
+                    }
+                    className="flex-1"
+                  />
+
+              {evento.monetize && (
+                <CampoEntrada
+                label="Chave Pix"
+                descricao="Digite a chave pix para receber pagamentos."
+                value={evento.chavePix ?? ""}
+                onChange={(e) =>
+                  alterarEvento({
+                    ...evento,
+                    chavePix: e.target.value,
+                  })
+                }
+                type="string"
+                min={1}
+              />
+              )}
+          </div>
+
         </div>
       </Passos>
     </div>
