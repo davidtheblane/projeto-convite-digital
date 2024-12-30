@@ -1,18 +1,18 @@
 import { Id } from "../../shared";
-import Evento from "../model/Evento";
+import { IEvent } from "../model/Event";
 
-export default function criarEventoVazio(): Partial<Evento> {
+export default function criarEventoVazio(): Partial<IEvent> {
   return {
     id: Id.novo(),
-    nome: "",
-    descricao: "",
-    data: new Date(),
+    name: "",
+    description: "",
+    initialDate: new Date(),
     local: "",
-    endereco: "",
-    publicoEsperado: 1,
-    imagem: "",
-    chavePix: "",
+    address: "",
+    expectedAudience: 1,
+    image: "",
+    keyPix: "",
     monetize: false,
-    imagemBackground: "",
+    imageBackground: "",
   };
 }

@@ -9,9 +9,9 @@ export default function PaginaEvento() {
     <div>
       <Janela
         label="Qual evento vamos criar?"
-        titulo={evento?.nome ? evento?.nome : "Novo Evento"}
-        imagem={evento?.imagem}
-        background={evento?.imagemBackground}
+        titulo={evento?.name ? evento?.name : "Novo Evento"}
+        imagem={evento?.image}
+        background={evento?.imageBackground}
       >
         <FormEvento />
       </Janela>

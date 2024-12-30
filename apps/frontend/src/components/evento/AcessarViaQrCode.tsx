@@ -1,8 +1,8 @@
-import { Evento } from "core";
+import { IEvent } from "core";
 import QRCode from "react-qr-code";
 
 export interface AcessarViaQrCodeProps {
-  evento: Evento;
+  evento: IEvent;
 }
 
 export default function AcessarViaQrCode(props: AcessarViaQrCodeProps) {
@@ -14,7 +14,7 @@ export default function AcessarViaQrCode(props: AcessarViaQrCodeProps) {
       <QRCode
         value={JSON.stringify({
           id: props.evento.id,
-          senha: props.evento.senha,
+          senha: props.evento.password,
         })}
         className="w-32 h-32"
       />

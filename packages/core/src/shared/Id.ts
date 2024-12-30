@@ -1,11 +1,10 @@
 import { v4 as uuid, validate } from "uuid";
-
 export default class Id {
-  static novo(): string {
-    return uuid();
+  static novo(): number {
+    return parseInt(uuid().split('-')[0], 16);
   }
 
-  static valido(id: string): boolean {
+  static valido(id: number): boolean {
     return validate(id);
   }
 }

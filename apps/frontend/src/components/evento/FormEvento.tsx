@@ -14,12 +14,12 @@ export default function FormEvento() {
   ];
 
   const permiteProximoPasso: boolean[] = [
-    !!evento.alias && !!evento.nome && aliasValido,
-    !!evento.data && !!evento.local,
-    !!evento.descricao && (evento.publicoEsperado ?? 0) > 0,
+    !!evento.alias && !!evento.name && aliasValido,
+    !!evento.initialDate && !!evento.local,
+    !!evento.description && (evento.expectedAudience ?? 0) > 0,
     // &&
-    // !!evento.imagem &&
-    // !!evento.imagemBackground,
+    // !!evento.image &&
+    // !!evento.imageBackground,
   ];
 
   return (
@@ -46,7 +46,7 @@ export default function FormEvento() {
           <CampoEntrada
             label="Nome"
             descricao='Nome do evento (ex.: "Festa de Aniversário do João")'
-            value={evento.nome ?? ""}
+            value={evento.name ?? ""}
             onChange={(e) =>
               alterarEvento({
                 ...evento,
@@ -59,7 +59,7 @@ export default function FormEvento() {
           <CampoEntrada
             label="Data"
             descricao="Data e hora em que o evento ocorrerá"
-            value={Data.formatar(evento.data ?? new Date())}
+            value={Data.formatar(evento.initialDate ?? new Date())}
             onChange={(e) =>
               alterarEvento({
                 ...evento,
@@ -82,7 +82,7 @@ export default function FormEvento() {
           <CampoEntrada
             label="Endereço"
             descricao="Digite o endereço do local"
-            value={evento.endereco ?? ""}
+            value={evento.address ?? ""}
             onChange={(e) =>
               alterarEvento({
                 ...evento,
@@ -95,7 +95,7 @@ export default function FormEvento() {
           <CampoEntrada
             label="Descrição"
             descricao='Descrição do evento (ex.: "Só entra se trouxer presente!")'
-            value={evento.descricao ?? ""}
+            value={evento.description ?? ""}
             onChange={(e) =>
               alterarEvento({
                 ...evento,
@@ -106,7 +106,7 @@ export default function FormEvento() {
           <CampoEntrada
             label="Imagem"
             descricao="URL da imagem que será exibida no convite"
-            value={evento.imagem ?? ""}
+            value={evento.image ?? ""}
             onChange={(e) =>
               alterarEvento({
                 ...evento,
@@ -117,7 +117,7 @@ export default function FormEvento() {
           <CampoEntrada
             label="Background"
             descricao="URL da imagem que será exibida como background no convite"
-            value={evento.imagemBackground ?? ""}
+            value={evento.imageBackground ?? ""}
             onChange={(e) =>
               alterarEvento({
                 ...evento,
@@ -128,7 +128,7 @@ export default function FormEvento() {
           <CampoEntrada
             label="Público Esperado"
             descricao="Total de convidados e acompanhantes esperados"
-            value={evento.publicoEsperado ?? 1}
+            value={evento.expectedAudience ?? 1}
             onChange={(e) =>
               alterarEvento({
                 ...evento,
@@ -155,7 +155,7 @@ export default function FormEvento() {
                 <CampoEntrada
                 label="Chave Pix"
                 descricao="Digite a chave pix para receber pagamentos."
-                value={evento.chavePix ?? ""}
+                value={evento.keyPix ?? ""}
                 onChange={(e) =>
                   alterarEvento({
                     ...evento,

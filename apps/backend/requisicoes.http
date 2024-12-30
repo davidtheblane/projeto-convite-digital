@@ -1,20 +1,29 @@
-GET http://localhost:4000/ping
+POST http://localhost:4000/auth/login
+Content-Type: application/json
 
-
-###
-GET http://localhost:4000/eventos
-
-###
-GET http://localhost:4000/eventos/semana-formacao-dev
-
-###
-GET http://localhost:4000/eventos/5e25282b-cde5-45ff-9436-c4320d7c2f6f
+{
+    "email": "john.doe@example.com",
+    "password": "123456"
+}
 
 ###
-GET http://localhost:4000/eventos/validar/evento-fullstack/5e25282b-cde5-45ff-9436-c4320d7c2f6f
+GET http://localhost:4000/healthcheck HTTP/1.1
+Authorization: "Bearer "
 
 ###
-POST http://localhost:4000/eventos/acessar
+GET http://localhost:4000/events
+
+###
+GET http://localhost:4000/events/semana-formacao-dev
+
+###
+GET http://localhost:4000/events/5e25282b-cde5-45ff-9436-c4320d7c2f6f
+
+###
+GET http://localhost:4000/events/validar/evento-fullstack/5e25282b-cde5-45ff-9436-c4320d7c2f6f
+
+###
+POST http://localhost:4000/events/acessar
 Content-Type: application/json
 
 {
@@ -23,7 +32,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:4000/eventos/reuniao-familia-oliveira/convidado
+POST http://localhost:4000/events/reuniao-familia-oliveira/convidado
 Content-Type: application/json
 
 {
@@ -36,7 +45,7 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:4000/eventos
+POST http://localhost:4000/events
 Content-Type: application/json
 
 {

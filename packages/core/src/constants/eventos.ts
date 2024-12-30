@@ -1,271 +1,256 @@
-import { Evento } from "../evento";
+import { IEvent } from "../evento/model/Event";
+import { v4 as uuid } from "uuid";
 
-const eventos: Evento[] = [
+const eventos: IEvent[] = [
   {
-    id: "21ff36d7-8fa7-495e-9339-d1687458b660",
+    id: parseInt(uuid().split('-')[0], 16),
     alias: "evento-fullstack",
-    senha: "senha123",
-    nome: "Evento de Desenvolvimento Fullstack",
-    data: new Date("2024-12-01T10:00:00Z"),
+    password: "senha123",
+    name: "Evento de Desenvolvimento Fullstack",
+    initialDate: new Date("2024-12-01T10:00:00Z"),
     local: "São Paulo, SP",
-    endereco: "Av. Paulista, 123",
-    descricao:
+    address: "Av. Paulista, 123",
+    description:
       "Um evento completo para aprender desenvolvimento fullstack do zero.",
-    imagem:
+    image:
       "https://images.prismic.io/vaultinum/0458a9f1-e149-4037-b9aa-aa4b4fb53c25_propriete-intellectuelle-code-source-protection-compressed.jpg?auto=compress,format&rect=0,0,2400,981&w=2400&h=981",
-    imagemBackground:
+    imageBackground:
       "https://images.prismic.io/vaultinum/0458a9f1-e149-4037-b9aa-aa4b4fb53c25_propriete-intellectuelle-code-source-protection-compressed.jpg?auto=compress,format&rect=0,0,2400,981&w=2400&h=981",
     monetize: false,
-    chavePix: "",
-      publicoEsperado: 200,
-    convidados: [
+    keyPix: "",
+      expectedAudience: 200,
+    guests: [
       {
-        id: "9db594ba-2015-4126-923b-9453d7edd552",
-        nome: "Alice Silva",
+        id: parseInt(uuid().split('-')[0], 16),
+        name: "Alice Silva",
         email: "alice@example.com",
-        confirmado: true,
-        possuiAcompanhantes: true,
-        qtdeAcompanhantes: 1,
+        status: 1,
+        companions: 1,
       },
       {
-        id: "7f76598d-5025-45d7-950a-45dbc52307ab",
-        nome: "Carlos Pereira",
+        id: parseInt(uuid().split('-')[0], 16),
+        name: "Carlos Pereira",
         email: "carlos@example.com",
-        confirmado: false,
-        possuiAcompanhantes: false,
-        qtdeAcompanhantes: 0,
+        status: 2,
+        companions: 0,
       },
       {
-        id: "be33b1e3-6d44-45d3-80dc-c9a4b61e389a",
-        nome: "Beatriz Lima",
+        id: parseInt(uuid().split('-')[0], 16),
+        name: "Beatriz Lima",
         email: "beatriz@example.com",
-        confirmado: true,
-        possuiAcompanhantes: true,
-        qtdeAcompanhantes: 2,
+        status: 1,
+        companions: 2,
       },
     ],
   },
   {
-    id: "f4b18eb7-13c6-4bde-aa26-a9551a5c31f2",
+    id: parseInt(uuid().split('-')[0], 16),
     alias: "evento-js-avancado",
-    senha: "js2024",
-    nome: "Workshop Avançado de JavaScript",
-    data: new Date("2024-11-20T15:00:00Z"),
+    password: "js2024",
+    name: "Workshop Avançado de JavaScript",
+    initialDate: new Date("2024-11-20T15:00:00Z"),
     local: "Rio de Janeiro, RJ",
-    endereco: "Av. Paulista, 123",
-    descricao: "Um workshop avançado para programadores JavaScript.",
-    imagem:
+    address: "Av. Paulista, 123",
+    description: "Um workshop avançado para programadores JavaScript.",
+    image:
       "https://www.datocms-assets.com/48401/1628644950-javascript.png?auto=format&fit=max&w=1200",
-    imagemBackground:
+    imageBackground:
       "https://blog.cronapp.io/wp-content/uploads/2020/09/javascript-1.jpg",
     monetize: true,
-    chavePix: "12345678901234567890",
-      publicoEsperado: 100,
-    convidados: [
+    keyPix: "12345678901234567890",
+      expectedAudience: 100,
+    guests: [
       {
-        id: "ce7781f9-ce90-480b-b33f-79551b436b30",
-        nome: "Eduardo Santos",
+        id: parseInt(uuid().split('-')[0], 16),
+        name: "Eduardo Santos",
         email: "eduardo@example.com",
-        confirmado: true,
-        possuiAcompanhantes: false,
-        qtdeAcompanhantes: 0,
+        status: 1,
+        companions: 0,
       },
       {
-        id: "89fe8fda-bdd2-4a0c-aa4c-efed7a4da7a7",
-        nome: "Fernanda Costa",
+        id: parseInt(uuid().split('-')[0], 16),
+        name: "Fernanda Costa",
         email: "fernanda@example.com",
-        confirmado: true,
-        possuiAcompanhantes: true,
-        qtdeAcompanhantes: 1,
+        status: 1,
+        companions: 1,
       },
     ],
-  },
-  {
-    id: "3a588693-650e-4c6d-868e-9090ff5c07b3",
-    alias: "evento-dev-frontend",
-    senha: "front123",
-    nome: "Bootcamp de Desenvolvimento Frontend",
-    data: new Date("2024-11-15T09:00:00Z"),
-    local: "Belo Horizonte, MG",
-    endereco: "Av. Paulista, 123",
-    descricao: "Aprenda a criar interfaces incríveis e responsivas.",
-    imagem:
-      "https://www.simplilearn.com/ice9/free_resources_article_thumb/recact_angular_vue.jpg",
-    imagemBackground:
-      "https://www.frontendmag.com/wp-content/uploads/2023/01/easiest-front-end-framework.jpeg",
-    monetize: true,
-    chavePix: "12345678901234567890",
-      publicoEsperado: 150,
-    convidados: [
-      {
-        id: "961e8ef3-8492-4bb6-8e99-4e07d175a18c",
-        nome: "Gabriela Rocha",
-        email: "gabriela@example.com",
-        confirmado: true,
-        possuiAcompanhantes: true,
-        qtdeAcompanhantes: 1,
-      },
-      {
-        id: "c9807f9f-d3c8-4dee-b49c-ae09cf3329e8",
-        nome: "Hugo Nogueira",
-        email: "hugo@example.com",
-        confirmado: false,
-        possuiAcompanhantes: false,
-        qtdeAcompanhantes: 0,
-      },
-      {
-        id: "d4f25df3-bd22-4b1d-a6ba-c8fd625ef117",
-        nome: "Isabela Martins",
-        email: "isabela@example.com",
-        confirmado: true,
-        possuiAcompanhantes: false,
-        qtdeAcompanhantes: 0,
-      },
-    ],
-  },
-  {
-    id: "7a0a5640-8e46-404d-bd90-dcba6589d57c",
-    alias: "casamento-alberto-marina",
-    senha: "casamento2024",
-    nome: "Casamento do Alberto e Marina",
-    data: new Date("2024-11-25T16:00:00Z"),
-    local: "Florianópolis, SC",
-    endereco: "Av. Paulista, 123",
-    descricao:
-      "Celebração do casamento de Alberto e Marina com amigos e familiares.",
-    imagem:
-      "https://i.em.com.br/IQ1l_dkc9VYK5P8PW-EaTphOuF4=/790x/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/21/1496049/uma-cor-que-esta-totalmente-proibida-para-as-convidadas-de-acordo-com-a-etiqueta-de-casamento-e-o-branco-que-esta-reservado-para-as-noivas-a-nao-ser-que-o-casamento-seja-na-praia_1_55583.jpg",
-    imagemBackground:
-      "https://www.psicologo.com.br/wp-content/uploads/casamento-feliz-um-guia-para-casamentos-felizes.jpg",
-    monetize: false,
-    chavePix: "",
-      publicoEsperado: 150,
-    convidados: [
-      {
-        id: "c7f15188-0f9a-454e-8d05-694308106b21",
-        nome: "Bruno Cardoso",
-        email: "bruno@example.com",
-        confirmado: true,
-        possuiAcompanhantes: true,
-        qtdeAcompanhantes: 1,
-      },
-      {
-        id: "384493ec-f538-4af0-95bb-eff54a17d7eb",
-        nome: "Carla Mendes",
-        email: "carla@example.com",
-        confirmado: true,
-        possuiAcompanhantes: false,
-        qtdeAcompanhantes: 0,
-      },
-    ],
-  },
-  {
-    id: "5e25282b-cde5-45ff-9436-c4320d7c2f6f",
-    alias: "aniversario-joao",
-    senha: "joao2024",
-    nome: "Aniversário do João - 30 Anos",
-    data: new Date("2024-12-05T18:00:00Z"),
-    local: "Curitiba, PR",
-    endereco: "Av. Paulista, 123",
-    descricao:
-      "Comemoração dos 30 anos de João com amigos próximos e familiares.",
-    imagem:
-      "https://img.elo7.com.br/product/600x380/4C55C74/capa-painel-redondo-tema-feliz-aniversario-em-tecido-1-50m-festa.jpg",
-    imagemBackground:
-      "https://img.freepik.com/vetores-gratis/fundo-da-celebracao-dos-baloes-e-confetti_1048-2223.jpg",
-    monetize: true,
-    chavePix: "12345678901234567890",
-      publicoEsperado: 80,
-    convidados: [
-      {
-        id: "62f27c65-d52e-4e4b-aeb1-e6c861539806",
-        nome: "Maria Souza",
-        email: "maria@example.com",
-        confirmado: true,
-        possuiAcompanhantes: true,
-        qtdeAcompanhantes: 2,
-      },
-      {
-        id: "eb5d60e7-ee91-4d6f-8365-33a2ef65ffd7",
-        nome: "José Almeida",
-        email: "jose@example.com",
-        confirmado: false,
-        possuiAcompanhantes: false,
-        qtdeAcompanhantes: 0,
-      },
-    ],
-  },
-  {
-    id: "53ae44ec-30fb-4e5a-9b0b-a9fbedd8e3c1",
-    alias: "inauguracao-loja-estrela",
-    senha: "estrela2024",
-    nome: "Inauguração da Loja Estrela",
-    data: new Date("2024-12-10T09:00:00Z"),
-    local: "Porto Alegre, RS",
-    endereco: "Av. Paulista, 123",
-    descricao:
-      "Evento de inauguração da nova loja Estrela com brindes e promoções.",
-    imagem:
-      "https://cosmeticinnovation.com.br/wp-content/uploads/2018/01/estrela_cosmeticos.png",
-    imagemBackground:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ-0_VdF_lcXATRHDUaaI0AQCt8R6Y_ShR3A&s",
-    monetize: false,
-    chavePix: "",
-      publicoEsperado: 300,
-    convidados: [
-      {
-        id: "56d33644-21e0-45d6-8374-b63492542957",
-        nome: "Cláudia Lima",
-        email: "claudia@example.com",
-        confirmado: true,
-        possuiAcompanhantes: true,
-        qtdeAcompanhantes: 3,
-      },
-      {
-        id: "08ce7902-a86f-4991-97bc-8cf5661fa328",
-        nome: "Ricardo Barbosa",
-        email: "ricardo@example.com",
-        confirmado: true,
-        possuiAcompanhantes: false,
-        qtdeAcompanhantes: 0,
-      },
-    ],
-  },
-  {
-    id: "65965e1c-8055-4795-b4a3-da93bbe97e31",
-    alias: "reuniao-familia-oliveira",
-    senha: "familia2024",
-    nome: "Reunião da Família Oliveira",
-    data: new Date("2024-12-15T12:00:00Z"),
-    local: "Salvador, BA",
-    endereco: "Av. Paulista, 123",
-    descricao: "Reunião de fim de ano da família Oliveira.",
-    imagem:
-      "https://www.themonastery.org/assets/themonastery/blog/scaled/duggars.jpg",
-    imagemBackground:
-      "https://img.freepik.com/fotos-premium/ondas-abstratas-brilhantes-de-celebracao-do-arco-iris-fluem-suavemente-geradas-por-ia_188544-9530.jpg?semt=ais_hybrid",
-    monetize: true,
-    chavePix: "12345678901234567890",
-      publicoEsperado: 50,
-    convidados: [
-      {
-        id: "70aad3a8-3307-4b4b-a8c6-a3796b7aef66",
-        nome: "Thiago Oliveira",
-        email: "thiago@example.com",
-        confirmado: true,
-        possuiAcompanhantes: true,
-        qtdeAcompanhantes: 4,
-      },
-      {
-        id: "5cf2c395-a931-4234-889f-7a8701c8e5fc",
-        nome: "Letícia Oliveira",
-        email: "leticia@example.com",
-        confirmado: true,
-        possuiAcompanhantes: false,
-        qtdeAcompanhantes: 0,
-      },
-    ],
-  },
+  }
+  // {
+  //   id: parseInt(uuid().split('-')[0], 16),
+  //   alias: "evento-dev-frontend",
+  //   password: "front123",
+  //   name: "Bootcamp de Desenvolvimento Frontend",
+  //   initialDate: new Date("2024-11-15T09:00:00Z"),
+  //   local: "Belo Horizonte, MG",
+  //   address: "Av. Paulista, 123",
+  //   description: "Aprenda a criar interfaces incríveis e responsivas.",
+  //   image:
+  //     "https://www.simplilearn.com/ice9/free_resources_article_thumb/recact_angular_vue.jpg",
+  //   imageBackground:
+  //     "https://www.frontendmag.com/wp-content/uploads/2023/01/easiest-front-end-framework.jpeg",
+  //   monetize: true,
+  //   keyPix: "12345678901234567890",
+  //     expectedAudience: 150,
+  //   guests: [
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Gabriela Rocha",
+  //       email: "gabriela@example.com",
+  //       status: 1,
+  //       companions: 1,
+  //     },
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Hugo Nogueira",
+  //       email: "hugo@example.com",
+  //       status: 2,
+  //       companions: 0,
+  //     },
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Isabela Martins",
+  //       email: "isabela@example.com",
+  //       status: 1,
+  //       companions: 0,
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: parseInt(uuid().split('-')[0], 16),
+  //   alias: "casamento-alberto-marina",
+  //   password: "casamento2024",
+  //   name: "Casamento do Alberto e Marina",
+  //   initialDate: new Date("2024-11-25T16:00:00Z"),
+  //   local: "Florianópolis, SC",
+  //   address: "Av. Paulista, 123",
+  //   description:
+  //     "Celebração do casamento de Alberto e Marina com amigos e familiares.",
+  //   image:
+  //     "https://i.em.com.br/IQ1l_dkc9VYK5P8PW-EaTphOuF4=/790x/smart/imgsapp.em.com.br/app/noticia_127983242361/2023/05/21/1496049/uma-cor-que-esta-totalmente-proibida-para-as-convidadas-de-acordo-com-a-etiqueta-de-casamento-e-o-branco-que-esta-reservado-para-as-noivas-a-nao-ser-que-o-casamento-seja-na-praia_1_55583.jpg",
+  //   imageBackground:
+  //     "https://www.psicologo.com.br/wp-content/uploads/casamento-feliz-um-guia-para-casamentos-felizes.jpg",
+  //   monetize: false,
+  //   keyPix: "",
+  //     expectedAudience: 150,
+  //   guests: [
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Bruno Cardoso",
+  //       email: "bruno@example.com",
+  //       status: 1,
+  //       companions: 1,
+  //     },
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Carla Mendes",
+  //       email: "carla@example.com",
+  //       status: 1,
+  //       companions: 0,
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: parseInt(uuid().split('-')[0], 16),
+  //   alias: "aniversario-joao",
+  //   password: "joao2024",
+  //   name: "Aniversário do João - 30 Anos",
+  //   initialDate: new Date("2024-12-05T18:00:00Z"),
+  //   local: "Curitiba, PR",
+  //   address: "Av. Paulista, 123",
+  //   description:
+  //     "Comemoração dos 30 anos de João com amigos próximos e familiares.",
+  //   image:
+  //     "https://img.elo7.com.br/product/600x380/4C55C74/capa-painel-redondo-tema-feliz-aniversario-em-tecido-1-50m-festa.jpg",
+  //   imageBackground:
+  //     "https://img.freepik.com/vetores-gratis/fundo-da-celebracao-dos-baloes-e-confetti_1048-2223.jpg",
+  //   monetize: true,
+  //   keyPix: "12345678901234567890",
+  //     expectedAudience: 80,
+  //   guests: [
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Maria Souza",
+  //       email: "maria@example.com",
+  //       status: 1,
+  //       companions: 2,
+  //     },
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "José Almeida",
+  //       email: "jose@example.com",
+  //       status: 2,
+  //       companions: 0,
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: parseInt(uuid().split('-')[0], 16),
+  //   alias: "inauguracao-loja-estrela",
+  //   password: "estrela2024",
+  //   name: "Inauguração da Loja Estrela",
+  //   initialDate: new Date("2024-12-10T09:00:00Z"),
+  //   local: "Porto Alegre, RS",
+  //   address: "Av. Paulista, 123",
+  //   description:
+  //     "Evento de inauguração da nova loja Estrela com brindes e promoções.",
+  //   image:
+  //     "https://cosmeticinnovation.com.br/wp-content/uploads/2018/01/estrela_cosmeticos.png",
+  //   imageBackground:
+  //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ-0_VdF_lcXATRHDUaaI0AQCt8R6Y_ShR3A&s",
+  //   monetize: false,
+  //   keyPix: "",
+  //     expectedAudience: 300,
+  //   guests: [
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Cláudia Lima",
+  //       email: "claudia@example.com",
+  //       status: 1,
+  //       companions: 3,
+  //     },
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Ricardo Barbosa",
+  //       email: "ricardo@example.com",
+  //       status: 1,
+  //       companions: 0,
+  //     },
+  //   ],
+  // },
+  // {
+  //   id: parseInt(uuid().split('-')[0], 16),
+  //   alias: "reuniao-familia-oliveira",
+  //   password: "familia2024",
+  //   name: "Reunião da Família Oliveira",
+  //   initialDate: new Date("2024-12-15T12:00:00Z"),
+  //   local: "Salvador, BA",
+  //   address: "Av. Paulista, 123",
+  //   description: "Reunião de fim de ano da família Oliveira.",
+  //   image:
+  //     "https://www.themonastery.org/assets/themonastery/blog/scaled/duggars.jpg",
+  //   imageBackground:
+  //     "https://img.freepik.com/fotos-premium/ondas-abstratas-brilhantes-de-celebracao-do-arco-iris-fluem-suavemente-geradas-por-ia_188544-9530.jpg?semt=ais_hybrid",
+  //   monetize: true,
+  //   keyPix: "12345678901234567890",
+  //     expectedAudience: 50,
+  //   guests: [
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Thiago Oliveira",
+  //       email: "thiago@example.com",
+  //       status: 1,
+  //       companions: 4,
+  //     },
+  //     {
+  //       id: parseInt(uuid().split('-')[0], 16),
+  //       name: "Letícia Oliveira",
+  //       email: "leticia@example.com",
+  //       status: 1,
+  //       companions: 0,
+  //     },
+    // ],
+  // },
 ];
 
 export default eventos;

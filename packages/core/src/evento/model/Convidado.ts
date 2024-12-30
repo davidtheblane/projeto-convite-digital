@@ -1,5 +1,5 @@
 export default interface Convidado {
-  id: string;
+  id: number;
   nome: string;
   email: string;
   confirmado: boolean;

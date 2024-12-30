@@ -5,7 +5,7 @@ import InformacoesEvento from "@/components/evento/InformacoesEvento";
 import Janela from "@/components/shared/Janela";
 import Processando from "@/components/shared/Processando";
 import useEvento from "@/data/hooks/useEvento";
-import { Evento } from "core";
+import { IEvent } from "core";
 import { use, useEffect } from "react";
 
 export default function PaginaConvite(props: any) {
@@ -26,11 +26,11 @@ export default function PaginaConvite(props: any) {
     <div>
       <Janela
         label="Você foi convidado para:"
-        titulo={evento.nome}
-        imagem={evento.imagem}
-        background={evento.imagemBackground}
+        titulo={evento.name}
+        imagem={evento.image}
+        background={evento.imageBackground}
       >
-        <InformacoesEvento esconderNome evento={evento as Evento} />
+        <InformacoesEvento esconderNome evento={evento as IEvent} />
         <div className="flex flex-col gap-4 pt-10">
           <span className="text-xl font-bold">Insira seus dados</span>
           <div className="border-t border-zinc-800"></div>

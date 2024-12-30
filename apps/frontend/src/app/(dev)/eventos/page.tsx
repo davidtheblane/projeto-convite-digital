@@ -16,22 +16,22 @@ export default function PaginaEventos() {
         >
           <div className="relative w-full h-52">
             <Image
-              src={evento.imagem}
+              src={evento.image}
               fill
-              alt={evento.nome}
+              alt={evento.name}
               className="object-cover"
             />
           </div>
           <div className="flex-1 flex flex-col items-center p-7 gap-5 text-center">
-            <span className="text-lg font-black">{evento.nome}</span>
-            <p className="flex-1 text-sm text-zinc-400">{evento.descricao}</p>
+            <span className="text-lg font-black">{evento.name}</span>
+            <p className="flex-1 text-sm text-zinc-400">{evento.description}</p>
             <QRCode
-              value={JSON.stringify({ id: evento.id, senha: evento.senha })}
+              value={JSON.stringify({ id: evento.id, senha: evento.password })}
               className="w-44 h-44"
             />
             <div className="flex gap-5">
               <Link
-                href={`/evento/admin/${evento.id}/${evento.senha}`}
+                href={`/evento/admin/${evento.id}/${evento.password}`}
                 className="flex-1 botao vermelho"
               >
                 Admin

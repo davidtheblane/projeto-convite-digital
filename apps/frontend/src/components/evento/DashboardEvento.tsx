@@ -1,11 +1,17 @@
-import { Convidado, Evento } from "core";
+import { 
+  IEvent,
+  IEventGuest,
+  IEventOffer,
+  StatusPresence,
+  Convidado,
+  IGuest } from "core";
 import InformacoesEvento from "./InformacoesEvento";
 import AcessarViaQrCode from "./AcessarViaQrCode";
 import Estatistica from "../shared/Estatistica";
 import ListaConvidados from "./ListaConvidados";
 
 export interface DashboardEventoProps {
-  evento: Evento;
+  evento: IEvent;
   presentes: Convidado[];
   ausentes: Convidado[];
   totalGeral: number;
@@ -22,7 +28,7 @@ export default function DashboardEvento(props: DashboardEventoProps) {
       <div className="grid grid-cols-3 gap-6 mt-4">
         <Estatistica
           texto="Expectativa de Convidados:"
-          valor={props.evento.publicoEsperado}
+          valor={props.evento.expectedAudience}
           imagem="/icones/convidados.svg"
         />
         <Estatistica

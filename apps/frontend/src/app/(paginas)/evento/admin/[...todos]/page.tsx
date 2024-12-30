@@ -2,7 +2,7 @@
 import DashboardEvento from "@/components/evento/DashboardEvento";
 import FormSenhaEvento from "@/components/evento/FormSenhaEvento";
 import useAPI from "@/data/hooks/useAPI";
-import { Convidado, Evento, eventos } from "core";
+import { Convidado, IEvent, eventos, IEventGuest } from "core";
 import { use, useCallback, useEffect, useState } from "react";
 
 export default function PaginaAdminEvento(props: any) {
@@ -10,11 +10,13 @@ export default function PaginaAdminEvento(props: any) {
   const params: any = use(props.params);
 
   const id = params.todos[0];
-  const [evento, setEvento] = useState<Evento | null>(null);
+  const [evento, setEvento] = useState<IEvent | null>(null);
   const [senha, setSenha] = useState<string>(params.todos[1] ?? "");
 
-  const presentes = evento?.convidados.filter((c) => c.confirmado) ?? [];
-  const ausentes = evento?.convidados.filter((c) => !c.confirmado) ?? [];
+  const presentes = evento?.guests.filter((c) => c.status === 'CONFIRMED') ?? []; // status present?
+  const ausentes = evento?.guests.filter((c) => !c.status === 'REFUSED') ?? []; // status present?
+  // const aguardando = evento?.guests.filter((c) => !c.status === 'PENDING') ?? []; // status present?
+
 
   const totalGeral =
     presentes?.reduce((total: number, convidado: Convidado) => {
@@ -22,19 +24,19 @@ export default function PaginaAdminEvento(props: any) {
     }, 0) ?? 0;
 
   function carregarEvento() {
-    const evento = eventos.find((ev) => ev.id === id && ev.senha === senha);
+    const evento = eventos.find((ev) => ev.id === id && ev.password === password);
     setEvento(evento ?? null);
   }
 
   const obterEvento = useCallback(async () => {
-    if (!id || !senha) return;
-    const evento = await httpPost("/eventos/acessar", { id, senha });
+    if (!id || !password) return;
+    const evento = await httpPost("/eventos/acessar", { id, password });
     setEvento(evento);
-  }, [httpPost, id, senha]);
+  }, [httpPost, id, password]);
 
   useEffect(() => {
     carregarEvento();
-  }, [id, senha]);
+  }, [id, password]);
 
   return (
     <div className="flex flex-col items-center">

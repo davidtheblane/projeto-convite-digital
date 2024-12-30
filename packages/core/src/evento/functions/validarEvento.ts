@@ -1,21 +1,21 @@
-import Evento from "../model/Evento";
+import { IEvent } from "../model/Event";
 
-export default function validarEvento(evento: Partial<Evento>): string[] {
+export default function validarEvento(evento: Partial<IEvent>): string[] {
   const erros: string[] = [];
 
   if (!evento.alias) {
     erros.push("Alias é obrigatório");
   }
 
-  if (!evento.nome) {
+  if (!evento.name) {
     erros.push("Nome é obrigatório");
   }
 
-  if (!evento.descricao) {
+  if (!evento.description) {
     erros.push("Descrição é obrigatória");
   }
 
-  if (!evento.data) {
+  if (!evento.initialDate) {
     erros.push("Data é obrigatória");
   }
 
@@ -23,19 +23,19 @@ export default function validarEvento(evento: Partial<Evento>): string[] {
     erros.push("Local é obrigatório");
   }
 
-  if (!evento.publicoEsperado || evento.publicoEsperado < 1) {
+  if (!evento.expectedAudience || evento.expectedAudience < 1) {
     erros.push("Público esperado é obrigatório");
   }
 
-  if (!evento.imagem) {
+  if (!evento.image) {
     erros.push("Imagem é obrigatória");
   }
 
-  if (!evento.imagemBackground) {
+  if (!evento.imageBackground) {
     erros.push("Imagem de fundo é obrigatória");
   }
 
-  if(evento.monetize && !evento.chavePix) {
+  if(evento.monetize && !evento.keyPix) {
     erros.push("Você escolheu receber pagamentos, a chave Pix é obrigatória");
   }
   return erros;
