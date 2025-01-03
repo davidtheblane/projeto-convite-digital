@@ -1,62 +1,66 @@
 import { Injectable } from '@nestjs/common';
-import { Convidado, Evento } from 'core';
+import { IEvent, IEventGuest, StatusPresence } from 'core';
 import { PrismaProvider } from 'src/db/prisma.provider';
 
 @Injectable()
 export class EventoPrisma {
-  constructor(readonly prisma: PrismaProvider) {}
+  constructor(readonly prisma: PrismaProvider) { }
 
-  salvar(evento: Evento) {
-    return this.prisma.evento.create({
+  salvar(evento: IEvent) {
+    return this.prisma.event.create({
       data: {
         ...(evento as any),
-        convidados: { create: evento.convidados },
+        convidados: { create: evento.guests },
       },
     });
   }
 
-  salvarConvidado(evento: Evento, convidado: Convidado) {
-    return this.prisma.convidado.create({
+  salvarConvidado(evento: IEvent, convidadoCompleto: IEventGuest) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { eventId, guestId, eventOfferId, id, ...convidadoCompletoData } = convidadoCompleto;
+    return this.prisma.eventGuest.create({
       data: {
-        ...convidado,
-        qtdeAcompanhantes: +(convidado.qtdeAcompanhantes ?? 0),
-        evento: { connect: { id: evento.id } },
+        ...convidadoCompletoData,
+        status: convidadoCompleto.status === 'CONFIRMED' ? StatusPresence.CONFIRMED : StatusPresence.REFUSED,
+        event: { connect: { id: eventId } },
+        guest: { connect: { id: guestId } },
+        eventOffer: { connect: { id: eventOfferId } }
       },
     });
   }
 
-  async buscarTodos(): Promise<Evento[]> {
-    return this.prisma.evento.findMany() as any;
+  async buscarTodos(): Promise<IEvent[]> {
+    return this.prisma.event.findMany() as any;
   }
 
   async buscarPorId(
-    id: string,
+    id: number,
     completo: boolean = false,
-  ): Promise<Evento | null> {
-    return this.prisma.evento.findUnique({
+  ): Promise<IEvent | null> {
+    return this.prisma.event.findUnique({
       where: { id },
-      include: { convidados: completo },
+      include: { guests: completo },
     }) as any;
   }
 
   async buscarPorAlias(
     alias: string,
     completo: boolean = false,
-  ): Promise<Evento | null> {
-    return this.prisma.evento.findUnique({
+  ): Promise<IEvent | null> {
+    return this.prisma.event.findUnique({
       select: {
         id: true,
-        nome: true,
-        descricao: true,
-        data: true,
+        name: true,
+        description: true,
+        initialDate: true,
         local: true,
-        endereco: true,
-        imagem: true,
-        imagemBackground: true,
+        address: true,
+        image: true,
+        imageBackground: true,
         alias: true,
-        senha: completo,
-        publicoEsperado: completo,
-        convidados: completo,
+        password: completo,
+        expectedAudience: completo,
+        guests: completo,
       },
       where: { alias },
     }) as any;

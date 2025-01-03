@@ -1,5 +1,7 @@
-import Evento from "./model/Evento";
-import Convidado from "./model/Convidado";
+import { IEvent, IEventGuest, IEventOffer, StatusPresence } from "./model/Event";
+import { IGuest } from "./model/Guest";
+import { IOffer } from './model/Offer';
+import { IUser } from './model/User';
 
 import complementarConvidado from "./functions/complementarConvidado";
 import criarConvidadoVazio from "./functions/criarConvidadoVazio";
@@ -8,7 +10,6 @@ import criarEventoVazio from "./functions/criarEventoVazio";
 import validarConvidado from "./functions/validarConvidado";
 import validarEvento from "./functions/validarEvento";
 
-export type { Evento, Convidado };
 export {
   complementarConvidado,
   criarConvidadoVazio,
@@ -18,14 +19,13 @@ export {
   validarEvento,
 };
 
-export type {
-  Convidado,
-  Evento,
-  IEvent,
-  IEventGuest,
-  IEventOffer,
+export {
+  IUser,
   IGuest,
   IOffer,
-  IUser,
+  IEvent,
+  IEventOffer,
+  IEventGuest,
   StatusPresence,
 };
+

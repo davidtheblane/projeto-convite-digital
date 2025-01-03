@@ -1,34 +1,39 @@
 import { PrismaClient } from '@prisma/client';
-import { eventos } from 'core';
+import { eventos, IEventGuest } from 'core';
 
 async function seed() {
   const prisma = new PrismaClient();
 
   const transacoes = eventos.map(async (evento) => {
-    await prisma.evento.create({
+    await prisma.event.create({
       data: {
-        id: evento.id,
         alias: evento.alias,
-        senha: evento.senha,
-        nome: evento.nome,
-        data: evento.data,
+        password: evento.password,
+        name: evento.name,
+        initialDate: evento.initialDate,
         local: evento.local,
-        endereco: evento.endereco,
+        address: evento.address,
         monetize: evento.monetize,
-        chavePix: evento.chavePix,
-        descricao: evento.descricao,
-        imagem: evento.imagem,
-        imagemBackground: evento.imagemBackground,
-        publicoEsperado: evento.publicoEsperado,
-        convidados: {
-          create: evento.convidados.map((convidado) => ({
-            id: convidado.id,
-            nome: convidado.nome,
-            email: convidado.email,
-            confirmado: convidado.confirmado,
-            possuiAcompanhantes: convidado.possuiAcompanhantes,
-            qtdeAcompanhantes: convidado.qtdeAcompanhantes,
-          })),
+        keyPix: evento.keyPix,
+        description: evento.description,
+        image: evento.image,
+        imageBackground: evento.imageBackground,
+        expectedAudience: evento.expectedAudience,
+        user: {
+          connect: { id: evento.userId }
+        },
+        guests: {
+          create: evento.guests.map((convidadoEvento: IEventGuest) => ({
+            confirmado: convidadoEvento.status === 'CONFIRMED',
+            possuiAcompanhantes: convidadoEvento.companions > 0,
+            qtdeAcompanhantes: convidadoEvento.companions,
+            guest: {
+              create: {
+                name: convidadoEvento.guest.name,
+                email: convidadoEvento.guest.email,
+              }
+            }
+          }))
         },
       },
     });

@@ -1,13 +1,10 @@
 "use client";
 import {
-  Convidado,
   criarConvidadoVazio,
   criarEventoVazio,
-  validarEvento,
+  IEventGuest,
   Data,
-  // Event,
   IEvent,
-  IGuest,
 } from "core";
 import { createContext, useCallback, useEffect, useState } from "react";
 import useAPI from "../hooks/useAPI";
@@ -16,11 +13,11 @@ import useMensagens from "../hooks/useMensagens";
 
 export interface ContextoEventoProps {
   evento: Partial<IEvent>;
-  convidado: Partial<Convidado>;
+  convidado: Partial<IEventGuest>;
   aliasValido: boolean;
 
   alterarEvento(evento: Partial<IEvent>): void;
-  alterarConvidado(convidado: Partial<Convidado>): void;
+  alterarConvidado(convidado: Partial<IEventGuest>): void;
 
   carregarEvento(idOuAlias: string): Promise<void>;
   salvarEvento(): Promise<void>;
@@ -37,7 +34,7 @@ export function ProvedorContextoEvento(props: any) {
 
   const [aliasValido, setAliasValido] = useState(true);
   const [evento, setEvento] = useState<Partial<IEvent>>(criarEventoVazio());
-  const [convidado, setConvidado] = useState<Partial<Convidado>>(
+  const [convidado, setConvidado] = useState<Partial<IEventGuest>>(
     criarConvidadoVazio()
   );
 
@@ -85,27 +82,12 @@ export function ProvedorContextoEvento(props: any) {
     [httpPost, evento, convidado, router]
   );
 
-  // const validarAlias = useCallback(
-  //   async function () {
-  //     try {
-  //       console.log({aliasValido})
-  //       const { valido } = await httpGet(
-  //         `/events/validar/${evento.alias}/${evento.id}`
-  //       );
-  //       setAliasValido(valido);
-  //     } catch (error: any) {
-  //       adicionarErro(error.messagem ?? "Ocorreu um erro inesperado!");
-  //     }
-  //   },
-  //   [httpGet, evento]
-  // );
-
   const validarAlias = useCallback(
     async function () {
       try {
-        console.log({aliasValido})
-        const valido = await validarEvento(evento);
-        console.log({valido})
+        const { valido } = await httpGet(
+          `/events/validar/${evento.alias}/${evento.id}`
+        );
         setAliasValido(valido);
       } catch (error: any) {
         adicionarErro(error.messagem ?? "Ocorreu um erro inesperado!");

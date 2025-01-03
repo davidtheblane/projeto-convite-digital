@@ -1,11 +1,11 @@
-import Convidado from "../model/Convidado";
+import { IGuest } from "core";
 
 export default function validarConvidado(
-  convidado: Partial<Convidado>
+  convidado: IGuest,
 ): string[] {
   const erros: string[] = [];
 
-  if (!convidado.nome) {
+  if (!convidado.name) {
     erros.push("Nome é obrigatório");
   }
 

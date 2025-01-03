@@ -1,10 +1,7 @@
 import { 
   IEvent,
   IEventGuest,
-  IEventOffer,
-  StatusPresence,
-  Convidado,
-  IGuest } from "core";
+} from "core";
 import InformacoesEvento from "./InformacoesEvento";
 import AcessarViaQrCode from "./AcessarViaQrCode";
 import Estatistica from "../shared/Estatistica";
@@ -12,8 +9,8 @@ import ListaConvidados from "./ListaConvidados";
 
 export interface DashboardEventoProps {
   evento: IEvent;
-  presentes: Convidado[];
-  ausentes: Convidado[];
+  presentes: IEventGuest[];
+  ausentes: IEventGuest[];
   totalGeral: number;
   atualizarListaConvidados: () => void;
 }

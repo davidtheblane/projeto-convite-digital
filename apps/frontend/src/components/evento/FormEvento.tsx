@@ -50,7 +50,7 @@ export default function FormEvento() {
             onChange={(e) =>
               alterarEvento({
                 ...evento,
-                nome: e.target.value,
+                name: e.target.value,
               })
             }
           />
@@ -63,7 +63,7 @@ export default function FormEvento() {
             onChange={(e) =>
               alterarEvento({
                 ...evento,
-                data: Data.desformatar(e.target.value),
+                initialDate: Data.desformatar(e.target.value),
               })
             }
             type="datetime-local"
@@ -86,7 +86,7 @@ export default function FormEvento() {
             onChange={(e) =>
               alterarEvento({
                 ...evento,
-                endereco: e.target.value,
+                address: e.target.value,
               })
             }
           />
@@ -99,7 +99,7 @@ export default function FormEvento() {
             onChange={(e) =>
               alterarEvento({
                 ...evento,
-                descricao: e.target.value,
+                description: e.target.value,
               })
             }
           />
@@ -110,7 +110,7 @@ export default function FormEvento() {
             onChange={(e) =>
               alterarEvento({
                 ...evento,
-                imagem: e.target.value,
+                image: e.target.value,
               })
             }
           />
@@ -121,7 +121,7 @@ export default function FormEvento() {
             onChange={(e) =>
               alterarEvento({
                 ...evento,
-                imagemBackground: e.target.value,
+                imageBackground: e.target.value,
               })
             }
           />
@@ -132,7 +132,7 @@ export default function FormEvento() {
             onChange={(e) =>
               alterarEvento({
                 ...evento,
-                publicoEsperado: Number(e.target.value),
+                expectedAudience: Number(e.target.value),
               })
             }
             type="number"
@@ -159,7 +159,7 @@ export default function FormEvento() {
                 onChange={(e) =>
                   alterarEvento({
                     ...evento,
-                    chavePix: e.target.value,
+                    keyPix: e.target.value,
                   })
                 }
                 type="string"
@@ -167,7 +167,6 @@ export default function FormEvento() {
               />
               )}
           </div>
-
         </div>
       </Passos>
     </div>

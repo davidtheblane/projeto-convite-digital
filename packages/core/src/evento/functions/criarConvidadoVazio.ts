@@ -1,13 +1,11 @@
 import { Id } from "../../shared";
-import Convidado from "../model/Convidado";
+import { IGuest } from "core";
 
-export default function criarConvidadoVazio(): Partial<Convidado> {
+export default function criarConvidadoVazio(): Partial<IGuest> {
   return {
     id: Id.novo(),
-    nome: "",
+    name: "",
     email: "",
-    confirmado: true,
-    possuiAcompanhantes: false,
-    qtdeAcompanhantes: 0,
+    events: [],
   };
 }

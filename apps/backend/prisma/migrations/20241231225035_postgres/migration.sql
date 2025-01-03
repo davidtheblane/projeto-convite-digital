@@ -27,7 +27,7 @@ CREATE TABLE "Event" (
     "image" TEXT NOT NULL,
     "imageBackground" TEXT NOT NULL,
     "expectedAudience" INTEGER DEFAULT 0,
-    "startDate" TIMESTAMP(3) NOT NULL,
+    "initialDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3),
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(3) NOT NULL,

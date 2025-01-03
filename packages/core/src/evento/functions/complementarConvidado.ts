@@ -1,26 +1,27 @@
-import Convidado from "../model/Convidado";
+import { IGuest, IEventGuest } from "core";
 import validarConvidado from "./validarConvidado";
 
 export default function complementarConvidado(
-  convidado: Partial<Convidado>
-): Convidado {
+  convidadoEvento: Partial<IEventGuest>, 
+  convidado: IGuest
+): IEventGuest {
   const erros = validarConvidado(convidado);
 
   if (erros.length > 0) {
     throw new Error(erros.join("\n"));
   }
 
-  const qtdeAcompanhantes = convidado.qtdeAcompanhantes ?? 0;
+  const qtdeAcompanhantes = convidadoEvento.companions ?? 0;
   const temAcompanhantes =
-    convidado.possuiAcompanhantes &&
-    convidado.confirmado &&
+    convidadoEvento.companions &&
+    convidadoEvento.status === 'CONFIRMED' &&
     qtdeAcompanhantes > 0;
 
   const convidadoAtualizado = {
-    ...convidado,
+    ...convidadoEvento,
     qtdeAcompanhantes: temAcompanhantes ? qtdeAcompanhantes : 0,
     possuiAcompanhantes: temAcompanhantes,
   };
 
-  return convidadoAtualizado as Convidado;
+  return convidadoAtualizado as IEventGuest;
 }

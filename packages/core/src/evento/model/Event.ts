@@ -1,6 +1,6 @@
 import { IGuest } from "./Guest";
 import { IOffer } from "./Offer";
-import IUser from "./User";
+import { IUser } from "./User";
 
 // Interface para Event
 export interface IEvent {
@@ -39,16 +39,14 @@ export interface IEventOffer {
 // Interface para EventGuest (relação entre Event e Guest)
 export interface IEventGuest {
   id: number;
-  name: string;
-  email: string;
   status: StatusPresence;
-  companions?: number;
+  companions: number;
   offerValue?: number;
   offerQuantity?: number;
-  createAt?: Date;
-  updateAt?: Date;
-  eventId?: number;
-  guestId?: number;
+  createAt: Date;
+  updateAt: Date;
+  eventId: number;
+  guestId: number;
   eventOfferId?: number;
   event?: IEvent;
   guest?: IGuest;
@@ -57,7 +55,7 @@ export interface IEventGuest {
 
 // Enum para StatusPresence
 export enum StatusPresence {
-  CONFIRMED = 1,
-  REFUSED = 2,
-  PENDING = 0,
+  CONFIRMED = "CONFIRMED",
+  REFUSED = "REFUSED",
+  PENDING = "PENDING"
 }

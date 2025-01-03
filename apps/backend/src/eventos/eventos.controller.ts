@@ -9,19 +9,20 @@ import {
 import {
   complementarConvidado,
   complementarEvento,
-  Convidado,
+  IEventGuest,
+  IEvent,
+  IGuest,
   Data,
-  Evento,
   Id,
 } from 'core';
 import { EventoPrisma } from './evento.prisma';
 
 @Controller('eventos')
 export class EventosController {
-  constructor(readonly repo: EventoPrisma) {}
+  constructor(readonly repo: EventoPrisma) { }
 
   @Post()
-  async salvarEvento(@Body() evento: Evento) {
+  async salvarEvento(@Body() evento: IEvent) {
     const eventoCadastrado = await this.repo.buscarPorAlias(evento.alias);
 
     if (eventoCadastrado && eventoCadastrado.id !== evento.id) {
@@ -36,7 +37,8 @@ export class EventosController {
   @Post(':alias/convidado')
   async salvarConvidado(
     @Param('alias') alias: string,
-    @Body() convidado: Convidado,
+    @Body() convidado: IGuest,
+    @Body() convidadoEvento: IEventGuest,
   ) {
     const evento = await this.repo.buscarPorAlias(alias);
 
@@ -44,19 +46,19 @@ export class EventosController {
       throw new HttpException('Evento não encontrado.', 400);
     }
 
-    const convidadoCompleto = complementarConvidado(convidado);
+    const convidadoCompleto = complementarConvidado(convidadoEvento, convidado);
     await this.repo.salvarConvidado(evento, convidadoCompleto);
   }
 
   @Post('acessar')
-  async acessarEvento(@Body() dados: { id: string; senha: string }) {
+  async acessarEvento(@Body() dados: { id: number; senha: string }) {
     const evento = await this.repo.buscarPorId(dados.id, true);
 
     if (!evento) {
       throw new HttpException('Evento não encontrado.', 400);
     }
 
-    if (evento.senha !== dados.senha) {
+    if (evento.password !== dados.senha) {
       throw new HttpException('Senha não corresponde ao evento.', 400);
     }
 
@@ -70,8 +72,8 @@ export class EventosController {
   }
 
   @Get(':idOuAlias')
-  async buscarEvento(@Param('idOuAlias') idOuAlias: string) {
-    let evento: Evento;
+  async buscarEvento(@Param('idOuAlias') idOuAlias: any) {
+    let evento: IEvent;
     if (Id.valido(idOuAlias)) {
       evento = await this.repo.buscarPorId(idOuAlias, true);
     } else {
@@ -81,24 +83,24 @@ export class EventosController {
   }
 
   @Get('validar/:alias/:id')
-  async validarAlias(@Param('alias') alias: string, @Param('id') id: string) {
+  async validarAlias(@Param('alias') alias: string, @Param('id') id: number) {
     const evento = await this.repo.buscarPorAlias(alias);
     return { valido: !evento || evento.id === id };
   }
 
-  private serializar(evento: Evento) {
+  private serializar(evento: IEvent) {
     if (!evento) return null;
     return {
       ...evento,
-      data: Data.formatar(evento.data),
+      data: Data.formatar(evento.initialDate),
     };
   }
 
-  private deserializar(evento: any): Evento {
+  private deserializar(evento: any): IEvent {
     if (!evento) return null;
     return {
       ...evento,
-      data: Data.desformatar(evento.data),
-    } as Evento;
+      data: Data.desformatar(evento.initialDate),
+    } as IEvent;
   }
 }

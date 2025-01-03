@@ -1,96 +1,41 @@
-import { IEvent, StatusPresence } from "../evento/model/Event";
+import { IGuest } from "../evento/model/Guest";
 
-const eventos: IEvent[] = [
-  {
-    id: 12345678,
-    alias: "evento-fullstack",
-    password: "senha123",
-    name: "Evento de Desenvolvimento Fullstack",
-    initialDate: new Date("2024-12-01T10:00:00Z"),
-    local: "São Paulo, SP",
-    address: "Av. Paulista, 123",
-    description:
-      "Um evento completo para aprender desenvolvimento fullstack do zero.",
-    image:
-      "https://images.prismic.io/vaultinum/0458a9f1-e149-4037-b9aa-aa4b4fb53c25_propriete-intellectuelle-code-source-protection-compressed.jpg?auto=compress,format&rect=0,0,2400,981&w=2400&h=981",
-    imageBackground:
-      "https://images.prismic.io/vaultinum/0458a9f1-e149-4037-b9aa-aa4b4fb53c25_propriete-intellectuelle-code-source-protection-compressed.jpg?auto=compress,format&rect=0,0,2400,981&w=2400&h=981",
-    monetize: false,
-    keyPix: "",
-    userId: 123890923,
-    expectedAudience: 200,
-    createAt: new Date("2024-12-01T10:00:00Z"),
-    updateAt: new Date("2024-12-01T10:00:00Z"),
-    guests: [
+const eventos: IGuest[] = [
       {
-        id: 876543210,
-        status: "CONFIRMED" as StatusPresence,
-        companions: 1,
+        id: 87654321,
+        name: "Alice Silva",
+        email: "alice@example.com",
         createAt: new Date("2024-12-01T10:00:00Z"),
         updateAt: new Date("2024-12-01T10:00:00Z"),
-        eventId: 12345678,
-        guestId: 87654321,
       },
       {
-        id: 234567890,
-        status: "REFUSED" as StatusPresence,
-        companions: 0,
+        id: 23456789,
+        name: "Carlos Pereira",
+        email: "carlos@example.com",
         createAt: new Date("2024-12-01T10:00:00Z"),
         updateAt: new Date("2024-12-01T10:00:00Z"),
-        eventId: 12345678,
-        guestId: 23456789,
       },
       {
-        id: 987654320,
-        status: "CONFIRMED" as StatusPresence,
-        companions: 2,
+        id: 98765432,
+        name: "Beatriz Lima",
+        email: "beatriz@example.com",
         createAt: new Date("2024-12-01T10:00:00Z"),
         updateAt: new Date("2024-12-01T10:00:00Z"),
-        eventId: 12345678,
-        guestId: 98765432,
-      },
-    ],
-  },
-  {
-    id: 34567890,
-    alias: "evento-js-avancado",
-    password: "js2024",
-    name: "Workshop Avançado de JavaScript",
-    initialDate: new Date("2024-11-20T15:00:00Z"),
-    local: "Rio de Janeiro, RJ",
-    address: "Av. Paulista, 123",
-    description: "Um workshop avançado para programadores JavaScript.",
-    image:
-      "https://www.datocms-assets.com/48401/1628644950-javascript.png?auto=format&fit=max&w=1200",
-    imageBackground:
-      "https://blog.cronapp.io/wp-content/uploads/2020/09/javascript-1.jpg",
-    monetize: true,
-    keyPix: "12345678901234567890",
-    expectedAudience: 100,
-    userId: 890495859385,
-    createAt: new Date("2024-12-01T10:00:00Z"),
-    updateAt: new Date("2024-12-01T10:00:00Z"),
-    guests: [
-      {
-        id: 765432100,
-        status: "CONFIRMED" as StatusPresence,
-        companions: 0,
-        createAt: new Date("2024-12-01T10:00:00Z"),
-        updateAt: new Date("2024-12-01T10:00:00Z"),
-        eventId: 34567890,
-        guestId: 76543210,
       },
       {
-        id: 456789010,
-        status: "CONFIRMED" as StatusPresence,
-        companions: 1,
+        id: 76543210,
+        name: "Eduardo Santos",
+        email: "eduardo@example.com",
         createAt: new Date("2024-12-01T10:00:00Z"),
         updateAt: new Date("2024-12-01T10:00:00Z"),
-        eventId: 34567890,
-        guestId: 45678901,
       },
-    ],
-  }
+      {
+        id: 45678901,
+        name: "Fernanda Costa",
+        email: "fernanda@example.com",
+        createAt: new Date("2024-12-01T10:00:00Z"),
+        updateAt: new Date("2024-12-01T10:00:00Z"),
+      },
   // {
   //   id: 56789012,
   //   alias: "evento-dev-frontend",
@@ -112,22 +57,22 @@ const eventos: IEvent[] = [
   //       id: 65432109,
   //       name: "Gabriela Rocha",
   //       email: "gabriela@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 1,
+  //  
+  //  
   //     },
   //     {
   //       id: 67890123,
   //       name: "Hugo Nogueira",
   //       email: "hugo@example.com",
-  //       status: "REFUSED" as StatusPresense ,
-  //       companions: 0,
+  //  
+  //  
   //     },
   //     {
   //       id: 54321098,
   //       name: "Isabela Martins",
   //       email: "isabela@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 0,
+  //  
+  //  
   //     },
   //   ],
   // },
@@ -153,15 +98,15 @@ const eventos: IEvent[] = [
   //       id: 43210987,
   //       name: "Bruno Cardoso",
   //       email: "bruno@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 1,
+  //  
+  //  
   //     },
   //     {
   //       id: 89012345,
   //       name: "Carla Mendes",
   //       email: "carla@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 0,
+  //  
+  //  
   //     },
   //   ],
   // },
@@ -187,15 +132,15 @@ const eventos: IEvent[] = [
   //       id: 32109876,
   //       name: "Maria Souza",
   //       email: "maria@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 2,
+  //  
+  //  
   //     },
   //     {
   //       id: 12345678,
   //       name: "José Almeida",
   //       email: "jose@example.com",
-  //       status: "REFUSED" as StatusPresense ,
-  //       companions: 0,
+  //  
+  //  
   //     },
   //   ],
   // },
@@ -221,15 +166,15 @@ const eventos: IEvent[] = [
   //       id: 21098765,
   //       name: "Cláudia Lima",
   //       email: "claudia@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 3,
+  //  
+  //  
   //     },
   //     {
   //       id: 34567890,
   //       name: "Ricardo Barbosa",
   //       email: "ricardo@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 0,
+  //  
+  //  
   //     },
   //   ],
   // },
@@ -254,17 +199,17 @@ const eventos: IEvent[] = [
   //       id: 10987654,
   //       name: "Thiago Oliveira",
   //       email: "thiago@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 4,
+  //  
+  //  
   //     },
   //     {
   //       id: 56789012,
   //       name: "Letícia Oliveira",
   //       email: "leticia@example.com",
-  //       status: "CONFIRMED" as StatusPresence,
-  //       companions: 0,
+  //  
+  //  
   //     },
-  // ],
+    // ],
   // },
 ];
 

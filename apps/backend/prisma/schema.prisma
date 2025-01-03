@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  password  String
+  createAt  DateTime  @default(now())
+  updateAt  DateTime  @updatedAt
+  events    Event[]
+}
+
+model Event {
+  id                Int       @id @default(autoincrement())
+  alias             String    @unique
+  password          String
+
+  name              String
+  description       String?
+  local             String
+  address           String?
+  monetize          Boolean   @default(false)
+  keyPix            String?
+  image             String
+  imageBackground   String
+  expectedAudience  Int?      @default(0)
+
+  initialDate         DateTime
+  endDate           DateTime?
+  createAt          DateTime  @default(now())
+  updateAt          DateTime  @updatedAt
+
+  userId            Int
+  user              User      @relation(fields: [userId], references: [id])
+  guests            EventGuest[]
+  offers            EventOffer[]
+}
+
+model Guest {
+  id          Int           @id @default(autoincrement())
+  name        String
+  email       String        @unique
+
+  createAt    DateTime       @default(now())
+  updateAt    DateTime       @updatedAt
+  events      EventGuest[]
+}
+
+model Offer {
+  id          Int           @id @default(autoincrement())
+  name        String
+  description String?
+  value       Float?
+  createAt    DateTime       @default(now())
+  updateAt    DateTime       @updatedAt
+
+  events      EventOffer[]
+}
+
+model EventOffer {
+  id        Int      @id @default(autoincrement())
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   Int
+  offer     Offer    @relation(fields: [offerId], references: [id])
+  offerId   Int
+
+  EventGuest EventGuest[]
+  @@unique([eventId, offerId])
+}
+
+model EventGuest {
+  id              Int             @id @default(autoincrement())
+  status          StatusPresence  @default(PENDING)
+  companions      Int             @default(0)
+  offerValue      Float           @default(0)
+  offerQuantity   Int             @default(0)
+  createAt        DateTime        @default(now())
+  updateAt        DateTime        @updatedAt
+
+  event           Event           @relation(fields: [eventId], references: [id])
+  eventId         Int
+  guest           Guest           @relation(fields: [guestId], references: [id])
+  guestId         Int
+  eventOffer      EventOffer?     @relation(fields: [eventOfferId], references: [id])
+  eventOfferId    Int?
+
+  @@unique([eventId, guestId])
+}
+
+enum StatusPresence {
+  CONFIRMED
+  REFUSED
+  PENDING
+}
