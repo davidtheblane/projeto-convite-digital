@@ -4,8 +4,8 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
   constructor() {}
 
-  @Get('/ping')
-  ping(): string {
-    return 'pong';
+  @Get('/healthcheck')
+  healthcheck(): string {
+    return 'Service is up and running';
   }
 }

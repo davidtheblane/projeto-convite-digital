@@ -35,7 +35,7 @@ model Event {
   imageBackground   String
   expectedAudience  Int?      @default(0)
 
-  initialDate         DateTime
+  startDate         DateTime
   endDate           DateTime?
   createAt          DateTime  @default(now())
   updateAt          DateTime  @updatedAt

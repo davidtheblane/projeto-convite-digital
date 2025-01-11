@@ -1,0 +1,13 @@
+name: eventos_db
+
+services:
+  pg:
+    container_name: banco_eventos
+    image: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=docker_dev
+      - POSTGRES_PASSWORD=docker_dev
+      - POSTGRES_DB=eventos

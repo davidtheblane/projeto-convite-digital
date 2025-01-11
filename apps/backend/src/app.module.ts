@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { EventosModule } from './eventos/eventos.module';
 import { DbModule } from './db/db.module';
+// import { EventosModule } from './eventos/eventos.module';
+import { AuthModule } from './auth/auth.module';
+import { EventsModule } from './events/events.module';
+import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [EventosModule, DbModule],
+  imports: [DbModule, EventsModule, UserModule, AuthModule],
   controllers: [AppController],
 })
 export class AppModule {}

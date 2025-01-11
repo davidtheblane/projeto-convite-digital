@@ -20,7 +20,7 @@ GET http://localhost:4000/events/semana-formacao-dev
 GET http://localhost:4000/events/5e25282b-cde5-45ff-9436-c4320d7c2f6f
 
 ###
-GET http://localhost:4000/events/validar/evento-fullstack/5e25282b-cde5-45ff-9436-c4320d7c2f6f
+GET http://localhost:4000/events/validate/evento-fullstack/1
 
 ###
 POST http://localhost:4000/events/acessar
@@ -30,6 +30,10 @@ Content-Type: application/json
     "id": "65965e1c-8055-4795-b4a3-da93bbe97e31",
     "senha": "familia2024"
 }
+
+###
+GET http://localhost:4000/events/1
+
 
 ###
 POST http://localhost:4000/events/reuniao-familia-oliveira/convidado
@@ -68,4 +72,32 @@ Content-Type: application/json
         }
     ]
 
+}
+
+### create event
+POST http://localhost:4000/events
+Content-Type: application/json
+
+{
+  "id": 1628446112,
+  "name": "asdasdasd",
+  "description": "asdasdasdasdasdas",
+  "startDate": "2025-01-17T12:04:00.000Z",
+  "local": "asdasdasdasd",
+  "address": "asdasdasdasd",
+  "expectedAudience": 10,
+  "image": "https://media.istockphoto.com/id/974238866/pt/foto/audience-listens-to-the-lecturer-at-the-conference.jpg?s=612x612&w=0&k=20&c=ZOCjHsr2nyWVvAgjA36Kg1FaIQpvQ3oThxEf_W7JdCc=",
+  "keyPix": "645377675436345",
+  "monetize": true,
+  "imageBackground": "https://media.istockphoto.com/id/974238866/pt/foto/audience-listens-to-the-lecturer-at-the-conference.jpg?s=612x612&w=0&k=20&c=ZOCjHsr2nyWVvAgjA36Kg1FaIQpvQ3oThxEf_W7JdCc=",
+  "alias": "asdasdasd",
+  "user": {
+      "id": 1111,
+      "name": "Admin",
+      "email": "admin@localhost",
+      "password": "admin",
+      "createAt": "2025-01-10T09:05",
+      "updateAt": "2025-01-10T09:05"
+  },
+  "userId": 1111
 }

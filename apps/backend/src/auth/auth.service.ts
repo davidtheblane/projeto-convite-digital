@@ -8,11 +8,11 @@ export class AuthService {
   constructor(
     private prisma: PrismaProvider,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
   async login(email: string, password: string) {
     const user = await this.prisma.user.findUnique({ where: { email } });
-    console.log({user})
+    console.log({ user })
 
     if (!user) {
       throw new UnauthorizedException('Credenciais inválidas.');
