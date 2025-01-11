@@ -20,9 +20,9 @@ export default function InformacoesEvento(props: InformacoesEventoProps) {
       <div className="flex gap-2">
         <Informacao label="Data:">
           <span>
-            {new Date(evento.initialDate!).toLocaleDateString()}
+            {new Date(evento.startDate!).toLocaleDateString()}
             {" às "}
-            {new Date(evento.initialDate!).toLocaleTimeString()}
+            {new Date(evento.startDate!).toLocaleTimeString()}
           </span>
         </Informacao>
         <Informacao label="Local:">{evento.local}</Informacao>

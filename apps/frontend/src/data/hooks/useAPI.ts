@@ -14,6 +14,7 @@ export default function useAPI() {
   const httpPost = useCallback(async function (caminho: string, body?: any) {
     const uri = caminho.startsWith("/") ? caminho : `/${caminho}`;
     const urlCompleta = `${urlBase}${uri}`;
+    console.log('urlCompleta', urlCompleta);
 
     const resposta = await fetch(urlCompleta, {
       method: "POST",
@@ -22,23 +23,24 @@ export default function useAPI() {
       },
       body: body ? JSON.stringify(body) : null,
     });
+    console.log('resposta', resposta);
     return extrairDados(resposta);
   }, []);
 
-  async function extrairDados(reposta: Response) {
+  async function extrairDados(response: Response) {
     let conteudo: any;
 
     try {
-      conteudo = await reposta.json();
+      conteudo = await response.json();
     } catch (error) {
-      if (!reposta.ok) {
+      if (!response.ok) {
         throw new Error(
-          `Ocorreu um erro inesperado com status ${reposta.status}.`
+          `Ocorreu um erro inesperado com status ${response.status}. Detalhe do erro ${error}`
         );
       }
       return null;
     }
-    if (!reposta.ok) throw conteudo;
+    if (!response.ok) throw conteudo;
     return conteudo;
   }
 

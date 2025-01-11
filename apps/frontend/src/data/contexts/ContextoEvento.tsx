@@ -41,8 +41,28 @@ export function ProvedorContextoEvento(props: any) {
   const salvarEvento = useCallback(
     async function () {
       try {
-        const eventoCriado = await httpPost("/events", evento);
-        router.push("/events/sucesso");
+        console.log('evento-contexto', evento);
+        const user = {
+          id: 1111,
+          name: "Admin",
+          email: "admin@localhost",
+          password: "admin",
+          createAt: Data.formatar(new Date()),
+          updateAt: Data.formatar(new Date()),
+        };
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { id, ...eventData } = evento;
+
+        const data = {
+          ...eventData,
+          userId: user.id,
+          user,
+        }
+        // Object.assign(data, { user, userId: user.id });
+
+        const eventoCriado = await httpPost("/events", data);
+        router.push("/eventos/sucesso");
         setEvento({
           ...eventoCriado,
           data: Data.desformatar(eventoCriado.data),
@@ -58,6 +78,7 @@ export function ProvedorContextoEvento(props: any) {
     async function (idOuAlias: string) {
       try {
         const evento = await httpGet(`/events/${idOuAlias}`);
+        console.log('carregar-evento', evento);
         if (!evento) return;
         setEvento({
           ...evento,
@@ -73,7 +94,7 @@ export function ProvedorContextoEvento(props: any) {
   const adicionarConvidado = useCallback(
     async function () {
       try {
-        await httpPost(`/events/${evento.alias}/convidado`, convidado);
+        await httpPost(`/events/${evento.alias}/guest`, convidado);
         router.push("/convite/obrigado");
       } catch (error: any) {
         adicionarErro(error.messagem ?? "Ocorreu um erro inesperado!");
@@ -86,7 +107,7 @@ export function ProvedorContextoEvento(props: any) {
     async function () {
       try {
         const { valido } = await httpGet(
-          `/events/validar/${evento.alias}/${evento.id}`
+          `/events/validate/${evento.alias}/${evento.id}`
         );
         setAliasValido(valido);
       } catch (error: any) {
@@ -95,7 +116,7 @@ export function ProvedorContextoEvento(props: any) {
     },
     [httpGet, evento]
   );
-  
+
   useEffect(() => {
     if (evento?.alias) validarAlias();
   }, [evento?.alias, validarAlias]);

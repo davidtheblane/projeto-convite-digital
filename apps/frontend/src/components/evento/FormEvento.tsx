@@ -15,7 +15,7 @@ export default function FormEvento() {
 
   const permiteProximoPasso: boolean[] = [
     !!evento.alias && !!evento.name && aliasValido,
-    !!evento.initialDate && !!evento.local,
+    !!evento.startDate && !!evento.local,
     !!evento.description && (evento.expectedAudience ?? 0) > 0,
     // &&
     // !!evento.image &&
@@ -59,11 +59,11 @@ export default function FormEvento() {
           <CampoEntrada
             label="Data"
             descricao="Data e hora em que o evento ocorrerá"
-            value={Data.formatar(evento.initialDate ?? new Date())}
+            value={Data.formatar(evento.startDate ?? new Date())}
             onChange={(e) =>
               alterarEvento({
                 ...evento,
-                initialDate: Data.desformatar(e.target.value),
+                startDate: Data.desformatar(e.target.value),
               })
             }
             type="datetime-local"

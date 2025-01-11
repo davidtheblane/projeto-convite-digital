@@ -1,22 +1,23 @@
-import { IGuest, IEventGuest } from "core";
+import { IEventGuest } from "core";
 
 export interface ConvidadoItemProps {
-  convidado: IGuest;
+  key: number;
   convidadoEvento: IEventGuest;
 }
 
 
 export default function ConvidadoItem(props: ConvidadoItemProps) {
+  const { convidadoEvento } = props;
   return (
     <li className="flex justify-between bg-black/40 rounded-md px-6 py-3 border border-zinc-800">
       <div className="flex flex-col">
-        <span className="text-xl font-bold">{props.convidado.name}</span>
-        <span className="text-sm text-zinc-400">{props.convidado.email}</span>
+        <span className="text-xl font-bold">{convidadoEvento?.guest.name}</span>
+        <span className="text-sm text-zinc-400">{convidadoEvento?.guest.email}</span>
       </div>
       <div className="flex flex-col items-end">
         <span className="text-sm text-zinc-400">Acompanhantes</span>
         <span className="text-xl font-bold">
-          {props.convidadoEvento.companions}
+          {convidadoEvento?.companions}
         </span>
       </div>
     </li>

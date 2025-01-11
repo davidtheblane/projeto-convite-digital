@@ -25,6 +25,30 @@ body {
     @apply bg-blue-600;
   }
 
+  .botao.laranja {
+    @apply bg-orange-300 text-white;
+  }
+
+  .botao.laranja:hover {
+    @apply bg-orange-500;
+  }
+
+  .botao.cinza {
+    @apply bg-gray-300 text-black;
+  }
+
+  .botao.cinza:hover {
+    @apply bg-gray-500;
+  }
+
+  .botao.preto {
+    @apply bg-stone-800 text-white;
+  }
+
+  .botao.preto:hover {
+    @apply bg-stone-600;
+  }
+
   .botao.vermelho {
     @apply bg-red-500 text-white;
   }

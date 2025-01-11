@@ -1,17 +1,17 @@
-import { IGuest, IEventGuest } from "core";
+import { IEventGuest } from "core";
 import ConvidadoItem from "./ConvidadoItem";
 
 export interface ListaConvidadosProps {
-  convidados: IGuest[]
-  convidadoEvento: IEventGuest;
+  convidadosEvento: IEventGuest[];
 }
 
 export default function ListaConvidados(props: ListaConvidadosProps) {
+  const {convidadosEvento} = props;
   return (
     <div>
       <ul className="flex flex-col gap-2">
-        {props.convidados.map((convidado) => (
-          <ConvidadoItem key={convidado.id} convidado={convidado} convidadoEvento={props.convidadoEvento} />
+        {convidadosEvento.map((convidadoEvento) => (
+          <ConvidadoItem key={convidadoEvento?.guestId} convidadoEvento={convidadoEvento} />
         ))}
       </ul>
     </div>
