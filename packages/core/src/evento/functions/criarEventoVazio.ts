@@ -6,7 +6,7 @@ export default function criarEventoVazio(): Partial<IEvent> {
     id: Id.novo(),
     name: "",
     description: "",
-    initialDate: new Date(),
+    startDate: new Date(),
     local: "",
     address: "",
     expectedAudience: 1,

@@ -2,7 +2,7 @@ import { IGuest, IEventGuest } from "core";
 import validarConvidado from "./validarConvidado";
 
 export default function complementarConvidado(
-  convidadoEvento: Partial<IEventGuest>, 
+  convidadoEvento: Partial<IEventGuest>,
   convidado: IGuest
 ): IEventGuest {
   const erros = validarConvidado(convidado);

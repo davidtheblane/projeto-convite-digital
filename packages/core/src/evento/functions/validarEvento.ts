@@ -15,7 +15,7 @@ export default function validarEvento(evento: Partial<IEvent>): string[] {
     erros.push("Descrição é obrigatória");
   }
 
-  if (!evento.initialDate) {
+  if (!evento.startDate) {
     erros.push("Data é obrigatória");
   }
 
@@ -35,7 +35,7 @@ export default function validarEvento(evento: Partial<IEvent>): string[] {
     erros.push("Imagem de fundo é obrigatória");
   }
 
-  if(evento.monetize && !evento.keyPix) {
+  if (evento.monetize && !evento.keyPix) {
     erros.push("Você escolheu receber pagamentos, a chave Pix é obrigatória");
   }
   return erros;

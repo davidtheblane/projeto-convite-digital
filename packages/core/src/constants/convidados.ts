@@ -1,47 +1,47 @@
 import { IGuest } from "../evento/model/Guest";
 
 const eventos: IGuest[] = [
-      {
-        id: 87654321,
-        name: "Alice Silva",
-        email: "alice@example.com",
-        createAt: new Date("2024-12-01T10:00:00Z"),
-        updateAt: new Date("2024-12-01T10:00:00Z"),
-      },
-      {
-        id: 23456789,
-        name: "Carlos Pereira",
-        email: "carlos@example.com",
-        createAt: new Date("2024-12-01T10:00:00Z"),
-        updateAt: new Date("2024-12-01T10:00:00Z"),
-      },
-      {
-        id: 98765432,
-        name: "Beatriz Lima",
-        email: "beatriz@example.com",
-        createAt: new Date("2024-12-01T10:00:00Z"),
-        updateAt: new Date("2024-12-01T10:00:00Z"),
-      },
-      {
-        id: 76543210,
-        name: "Eduardo Santos",
-        email: "eduardo@example.com",
-        createAt: new Date("2024-12-01T10:00:00Z"),
-        updateAt: new Date("2024-12-01T10:00:00Z"),
-      },
-      {
-        id: 45678901,
-        name: "Fernanda Costa",
-        email: "fernanda@example.com",
-        createAt: new Date("2024-12-01T10:00:00Z"),
-        updateAt: new Date("2024-12-01T10:00:00Z"),
-      },
+  {
+    id: 87654321,
+    name: "Alice Silva",
+    email: "alice@example.com",
+    createAt: new Date("2024-12-01T10:00:00Z"),
+    updateAt: new Date("2024-12-01T10:00:00Z"),
+  },
+  {
+    id: 23456789,
+    name: "Carlos Pereira",
+    email: "carlos@example.com",
+    createAt: new Date("2024-12-01T10:00:00Z"),
+    updateAt: new Date("2024-12-01T10:00:00Z"),
+  },
+  {
+    id: 98765432,
+    name: "Beatriz Lima",
+    email: "beatriz@example.com",
+    createAt: new Date("2024-12-01T10:00:00Z"),
+    updateAt: new Date("2024-12-01T10:00:00Z"),
+  },
+  {
+    id: 76543210,
+    name: "Eduardo Santos",
+    email: "eduardo@example.com",
+    createAt: new Date("2024-12-01T10:00:00Z"),
+    updateAt: new Date("2024-12-01T10:00:00Z"),
+  },
+  {
+    id: 45678901,
+    name: "Fernanda Costa",
+    email: "fernanda@example.com",
+    createAt: new Date("2024-12-01T10:00:00Z"),
+    updateAt: new Date("2024-12-01T10:00:00Z"),
+  },
   // {
   //   id: 56789012,
   //   alias: "evento-dev-frontend",
   //   password: "front123",
   //   name: "Bootcamp de Desenvolvimento Frontend",
-  //   initialDate: new Date("2024-11-15T09:00:00Z"),
+  //   startDate: new Date("2024-11-15T09:00:00Z"),
   //   local: "Belo Horizonte, MG",
   //   address: "Av. Paulista, 123",
   //   description: "Aprenda a criar interfaces incríveis e responsivas.",
@@ -81,7 +81,7 @@ const eventos: IGuest[] = [
   //   alias: "casamento-alberto-marina",
   //   password: "casamento2024",
   //   name: "Casamento do Alberto e Marina",
-  //   initialDate: new Date("2024-11-25T16:00:00Z"),
+  //   startDate: new Date("2024-11-25T16:00:00Z"),
   //   local: "Florianópolis, SC",
   //   address: "Av. Paulista, 123",
   //   description:
@@ -115,7 +115,7 @@ const eventos: IGuest[] = [
   //   alias: "aniversario-joao",
   //   password: "joao2024",
   //   name: "Aniversário do João - 30 Anos",
-  //   initialDate: new Date("2024-12-05T18:00:00Z"),
+  //   startDate: new Date("2024-12-05T18:00:00Z"),
   //   local: "Curitiba, PR",
   //   address: "Av. Paulista, 123",
   //   description:
@@ -149,7 +149,7 @@ const eventos: IGuest[] = [
   //   alias: "inauguracao-loja-estrela",
   //   password: "estrela2024",
   //   name: "Inauguração da Loja Estrela",
-  //   initialDate: new Date("2024-12-10T09:00:00Z"),
+  //   startDate: new Date("2024-12-10T09:00:00Z"),
   //   local: "Porto Alegre, RS",
   //   address: "Av. Paulista, 123",
   //   description:
@@ -183,7 +183,7 @@ const eventos: IGuest[] = [
   //   alias: "reuniao-familia-oliveira",
   //   password: "familia2024",
   //   name: "Reunião da Família Oliveira",
-  //   initialDate: new Date("2024-12-15T12:00:00Z"),
+  //   startDate: new Date("2024-12-15T12:00:00Z"),
   //   local: "Salvador, BA",
   //   address: "Av. Paulista, 123",
   //   description: "Reunião de fim de ano da família Oliveira.",
@@ -209,7 +209,7 @@ const eventos: IGuest[] = [
   //  
   //  
   //     },
-    // ],
+  // ],
   // },
 ];
 

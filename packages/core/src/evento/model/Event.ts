@@ -16,7 +16,7 @@ export interface IEvent {
   image: string;
   imageBackground: string;
   expectedAudience: number;
-  initialDate: Date;
+  startDate: Date;
   endDate?: Date;
   createAt: Date;
   updateAt: Date;
