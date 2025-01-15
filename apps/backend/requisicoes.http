@@ -10,19 +10,16 @@ Content-Type: application/json
 GET http://localhost:4000/healthcheck HTTP/1.1
 Authorization: "Bearer "
 
-###
+### All Events
 GET http://localhost:4000/events
 
-###
-GET http://localhost:4000/events/semana-formacao-dev
-
-###
+### event by id
 GET http://localhost:4000/events/5e25282b-cde5-45ff-9436-c4320d7c2f6f
 
-###
-GET http://localhost:4000/events/validate/evento-fullstack/1
+### validate event alias
+GET http://localhost:4000/events/validate/evento-fullstack
 
-###
+### acessar evento
 POST http://localhost:4000/events/acessar
 Content-Type: application/json
 
@@ -31,9 +28,8 @@ Content-Type: application/json
     "senha": "familia2024"
 }
 
-###
+### event by Id
 GET http://localhost:4000/events/1
-
 
 ###
 POST http://localhost:4000/events/reuniao-familia-oliveira/convidado
@@ -49,55 +45,73 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:4000/events
-Content-Type: application/json
+# POST http://localhost:4000/events
+# Content-Type: application/json
 
-{
-    "alias": "semana-formacao-dev",
-    "nome": "Evento Semana Formação.DEV",
-    "data": "2025-12-31T23:00",
-    "local": "São Paulo",
-    "descricao": "Evento de tecnologia",
-    "senha": "frameworks2025",
-    "imagem": "https://www.formacao.dev/assets/img/formacao-dev.png",
-    "imagemBackground": "https://www.formacao.dev/assets/img/formacao-dev-background.png",
-    "publicoEsperado": 1000,
-    "convidados": [
-        {
-            "nome": "Leonardo Leitão",
-            "email": "leonardo@formacao.dev",
-            "confirmado": true,
-            "possuiAcompanhantes": true,
-            "qtdeAcompanhantes": 10
-        }
-    ]
-
-}
+# {
+#     "id": 1243475675,
+#     "alias": "semana-formacao-dev",
+#     "nome": "Evento Semana Formação.DEV",
+#     "data": "2025-12-31T23:00",
+#     "local": "São Paulo",
+#     "descricao": "Evento de tecnologia",
+#     "senha": "frameworks2025",
+#     "imagem": "https://www.formacao.dev/assets/img/formacao-dev.png",
+#     "imagemBackground": "https://www.formacao.dev/assets/img/formacao-dev-background.png",
+#     "publicoEsperado": 1000,
+#     "convidados": [
+#         {
+#             "nome": "Leonardo Leitão",
+#             "email": "leonardo@formacao.dev",
+#             "confirmado": true,
+#             "possuiAcompanhantes": true,
+#             "qtdeAcompanhantes": 10
+#         }
+#     ]
+# }
 
 ### create event
 POST http://localhost:4000/events
 Content-Type: application/json
 
 {
-  "id": 1628446112,
-  "name": "asdasdasd",
-  "description": "asdasdasdasdasdas",
+  "name": "evento 2",
+  "description": "evento 2",
   "startDate": "2025-01-17T12:04:00.000Z",
-  "local": "asdasdasdasd",
-  "address": "asdasdasdasd",
-  "expectedAudience": 10,
+  "local": "evento2",
+  "address": "evento2",
+  "password": "evento21234",
+  "expectedAudience": 100,
   "image": "https://media.istockphoto.com/id/974238866/pt/foto/audience-listens-to-the-lecturer-at-the-conference.jpg?s=612x612&w=0&k=20&c=ZOCjHsr2nyWVvAgjA36Kg1FaIQpvQ3oThxEf_W7JdCc=",
   "keyPix": "645377675436345",
   "monetize": true,
   "imageBackground": "https://media.istockphoto.com/id/974238866/pt/foto/audience-listens-to-the-lecturer-at-the-conference.jpg?s=612x612&w=0&k=20&c=ZOCjHsr2nyWVvAgjA36Kg1FaIQpvQ3oThxEf_W7JdCc=",
-  "alias": "asdasdasd",
-  "user": {
-      "id": 1111,
-      "name": "Admin",
-      "email": "admin@localhost",
-      "password": "admin",
-      "createAt": "2025-01-10T09:05",
-      "updateAt": "2025-01-10T09:05"
-  },
-  "userId": 1111
+  "alias": "teste-evento-2",
+  "userId": 1
+}
+
+### Create User
+POST http://localhost:4000/users
+Content-Type: application/json
+
+{
+  "name": "Dayane",
+  "email": "dayane@localhost.com",
+  "password": "davi123456"
+}
+
+### Find User by Id
+GET http://localhost:4000/users/1
+
+### Find Event By Alias
+GET http://localhost:4000/events/alias/asdasdasd
+
+
+### Create Guest into event
+POST http://localhost:4000/guests/asdasdasd/guest
+Content-Type: application/json
+
+{
+  "name": "Dana Smith",
+  "email": "dana.smith@example.com"
 }

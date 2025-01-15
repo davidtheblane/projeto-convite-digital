@@ -46,12 +46,13 @@ export class GuestController {
   }
 
   @Post(':alias/guest')
-  async saveCandidate(@Param('alias') alias: string, @Body('convidado') convidado: any) {
+  async saveGuest(@Param('alias') alias: string, @Body() convidado: CreateGuestDto) {
+
     console.log('adicionar-candidato', alias, convidado)
 
-    const candidateEventUpdated = this.guestServices.saveCandidate(alias, convidado);
-    if (!candidateEventUpdated) throw new HttpException('Evento não encontrado', 400);
+    const candidateEventUpdated = this.guestServices.saveGuest(alias, convidado);
 
     return candidateEventUpdated
+
   }
 }

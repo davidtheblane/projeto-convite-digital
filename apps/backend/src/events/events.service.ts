@@ -4,6 +4,7 @@ import { PrismaProvider } from 'src/db/prisma.provider';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { IEvent } from 'core';
+import { CreateUserDto } from 'src/user/dto/create-user.dto';
 
 @Injectable()
 export class EventsService {
@@ -17,17 +18,16 @@ export class EventsService {
     );
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { id, userId, offers, guests, ...eventData } = evento;
-    console.log('event-data', eventData)
+    const { offers, guests, userId, ...eventData } = evento;
 
-    return await this.prisma.event.create({
-      data: {
-        ...eventData,
-        password: hashedPassword,
-        user: { connect: { id: eventData.user?.id } },
-        offers: { connect: offers?.map((offer) => ({ id: offer.id })) || [] }
-      }
-    });
+    const data = {
+      ...eventData,
+      password: hashedPassword,
+      user: { connect: { id: userId } },
+      offers: { connect: offers?.map((offer) => ({ id: offer.id })) }
+    }
+
+    return await this.prisma.event.create({ data });
   }
 
   async findAll() {
@@ -42,9 +42,9 @@ export class EventsService {
   }
 
   async findByAlias(alias: string) {
-    console.log({ alias })
     return await this.prisma.event.findUnique({
-      where: { alias }
+      where: { alias },
+      include: { offers: { include: { offer: true } } },
     });
   }
 

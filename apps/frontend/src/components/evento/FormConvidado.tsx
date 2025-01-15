@@ -1,4 +1,4 @@
-import { IEventGuest, IEvent, IGuest } from "core";
+import { IEventGuest, IEvent, IGuest, StatusPresence } from "core";
 import CampoEntrada from "../shared/CampoEntrada";
 import CampoSimNao from "../shared/CampoSimNao";
 
@@ -11,8 +11,7 @@ export interface FormConvidadoProps {
 }
 
 export default function FormConvidado(props: FormConvidadoProps) {
-  const possuiAcompanhantes = props.convidadoEvento.companions ?? true;
-  
+
   return (
     <div className="flex flex-col gap-5">
       <CampoEntrada
@@ -32,52 +31,30 @@ export default function FormConvidado(props: FormConvidadoProps) {
       <div className="flex gap-5">
         <CampoSimNao
           label="Presença Confirmada?"
-          value={props.convidadoEvento.status === 'CONFIRMED' ? true : false}
+          value={props.convidadoEvento.status === StatusPresence.CONFIRMED ? true : false}
           onChange={(valor) =>
-            props.convidadoEventoMudou({ ...props.convidadoEvento, status: valor})
+            props.convidadoEventoMudou({
+              ...props.convidadoEvento,
+              status: valor ? StatusPresence.CONFIRMED : StatusPresence.REFUSED
+            })
           }
           className="flex-1"
         />
 
-        {/* <div className="flex gap-5">
-        <CampoSimNao
-          label="Que trazes de bom?"
-          value={props.convidado.confirmado ?? true}
-          onChange={(valor) =>
-            props.convidadoMudou({ ...props.convidado, confirmado: valor })
-          }
-          className="flex-1"
-        /> */}
-
-{/* // TODO VOLTAR AQUI E RESOLVER*/}
-        {props.convidadoEvento.status === 'CONFIRMED' && (
+        {props.convidadoEvento.status === StatusPresence.CONFIRMED && (
           <div className="flex-1 flex gap-5">
-            {/* <CampoSimNao
-              label="Possui Acompanhantes?"
-              value={props.convidadoEvento.companions === 0 ? false : true}
-              onChange={(valor) =>
+            <CampoEntrada
+              label="Quantos Acompanhantes?"
+              value={props.convidadoEvento.companions ?? 0}
+              onChange={(e) =>
                 props.convidadoEventoMudou({
-                  ...props.convidado,
-                  possuiAcompanhantes: valor,
-                  qtdeAcompanhantes: valor ? 1 : 0,
+                  ...props.convidadoEvento,
+                  companions: +e.target.value,
                 })
               }
-              className="flex-1"
-            /> */}
-            {props.convidadoEvento.companions && (
-              <CampoEntrada
-                label="Quantos Acompanhantes?"
-                value={props.convidadoEvento.companions ?? 1}
-                onChange={(e) =>
-                  props.convidadoEventoMudou({
-                    ...props.convidado,
-                    companions: +e.target.value,
-                  })
-                }
-                min={1}
-                type="number"
-              />
-            )}
+              min={0}
+              type="number"
+            />
           </div>
         )}
       </div>

@@ -35,7 +35,7 @@ export function ProvedorContextoUsuario(props: any) {
   //   async function () {
   //     try {
   //       const novoUsuario = await httpPost("/events/users", user);
-  //       router.push("/eventos/sucesso");
+  //       router.push("/evento/sucesso");
   //       setUser({
   //         ...novoUsuario,
   //         data: Data.desformatar(novoUsuario.data),

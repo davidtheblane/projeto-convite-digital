@@ -35,7 +35,7 @@ export default function EventoSucesso() {
           <CopiarClipboard
             icone={IconLink}
             label="Link Administrador"
-            texto={`${urlAtual}/evento/admin/${evento.id}`}
+            texto={`${urlAtual}/evento/admin/${evento.alias}`}
           />
           <CopiarClipboard
             icone={IconFingerprint}

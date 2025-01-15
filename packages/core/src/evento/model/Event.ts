@@ -4,7 +4,6 @@ import { IUser } from "./User";
 
 // Interface para Event
 export interface IEvent {
-  id: number;
   alias: string;
   password: string;
   name: string;

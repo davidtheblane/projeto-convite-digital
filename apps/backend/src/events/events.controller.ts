@@ -36,12 +36,18 @@ export class EventsController {
   @Get()
   async findAll() {
     const eventos = await this.eventsService.findAll();
-    return eventos.map((evento) => this.serializar(evento));
+    return eventos.map((evento) => evento);
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  async findOne(@Param('id') id: number) {
     return await this.eventsService.findOne(+id);
+  }
+
+  @Get('alias/:idOuAlias')
+  async searchEvent(@Param('idOuAlias') idOuAlias: string) {
+
+    return await this.eventsService.findByAlias(idOuAlias);
   }
 
   // @Patch(':id')
@@ -55,34 +61,24 @@ export class EventsController {
   // }
 
   @Post()
-  async createEvent(@Body() evento: IEvent) {
-    console.log('create-event', evento)
-    const eventoCadastrado = await this.eventsService.findByAlias(evento.alias);
+  async createEvent(@Body() evento: CreateEventDto) {
+    const eventoJaExiste = await this.eventsService.findByAlias(evento.alias);
+    if (eventoJaExiste) throw new HttpException('Já existe um evento com esse alias.', 400);
 
-    if (eventoCadastrado && eventoCadastrado.id !== evento.id) {
-      throw new HttpException('Já existe um evento com esse alias.', 400);
-    }
-
-    const eventoCompleto = complementarEvento(this.deserializar(evento));
+    const eventoCompleto = complementarEvento(evento);
+    console.log({ eventoCompleto })
     await this.eventsService.create(eventoCompleto);
-    return this.serializar(eventoCompleto);
+    return eventoCompleto;
   }
 
-  @Get('validate/:alias/:id')
-  async validateAlias(@Param('alias') alias: string, @Param('id') id: number) {
-    console.log('validar-alias', alias, id);
+  @Get('validate/:alias')
+  async validateAlias(@Param('alias') alias: string) {
+    console.log('validar-alias', alias);
     const evento = await this.eventsService.findByAlias(alias)
-    console.log({ evento })
-    return { valido: !evento || evento.id === id }
+    return { valido: !evento }
   }
 
-  @Get(':idOuAlias')
-  async searchEvent(@Param('idOuAlias') idOuAlias: any) {
-    const evento = typeof idOuAlias === 'number'
-      ? await this.eventsService.findOne(+idOuAlias)
-      : await this.eventsService.findByAlias(idOuAlias);
-    return this.serializar(evento);
-  }
+
 
   @Post('acessar')
   async loadEvent(@Body() dados: { id: number; senha: string }) {
@@ -92,22 +88,22 @@ export class EventsController {
 
     if (!evento) throw new HttpException('Evento não encontrado.', 400);
     if (evento.password !== senha) throw new HttpException('Senha não corresponde ao evento.', 400);
-    return this.serializar(evento);
+    return evento;
   }
 
-  private serializar(evento: IEvent) {
-    if (!evento) return null;
-    return {
-      ...evento,
-      data: Data.formatar(evento.startDate),
-    };
-  }
+  // private serializar(evento: CreateEventDto) {
+  //   if (!evento) return null;
+  //   return {
+  //     ...evento,
+  //     startDate: Data.formatar(evento.startDate),
+  //   };
+  // }
 
-  private deserializar(evento: any): IEvent {
-    if (!evento) return null;
-    return {
-      ...evento,
-      data: Data.desformatar(evento.startDate),
-    } as IEvent;
-  }
+  // private deserializar(evento: any): IEvent {
+  //   if (!evento) return null;
+  //   return {
+  //     ...evento,
+  //     startDate: Data.desformatar(evento.startDate),
+  //   } as IEvent;
+  // }
 }

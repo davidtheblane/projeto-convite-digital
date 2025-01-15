@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaProvider } from 'src/db/prisma.provider';
 import { CreateGuestDto } from './dto/create-guest.dto';
 import { UpdateGuestDto } from './dto/update-guest.dto';
+import { IGuest } from 'core';
 
 @Injectable()
 export class GuestService {
@@ -44,15 +45,20 @@ export class GuestService {
     return this.prisma.guest.delete({ where: { id } });
   }
 
-  async saveCandidate(alias: string, convidado: CreateGuestDto) {
+  async saveGuest(alias: string, convidado: any) {
+
     // find event
     const event = await this.prisma.event.findUnique({
-      where: { alias }
+      where: { alias },
     });
 
+    if (!event) throw new HttpException('Evento não encontrado', 400);
+
     // cria candidato e evento no candidato
-    const guestData = {
-      ...convidado,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { status, ...guestData } = convidado;
+    const data = {
+      ...guestData,
       events: {
         create: [
           { event: { connect: { id: event.id } }, }
@@ -60,23 +66,9 @@ export class GuestService {
       }
     }
 
-    return await this.prisma.guest.create({
-      data: guestData
-    });
+    console.log('guest-data-request-back', data)
 
-    // // salva candidato no evento
-    // const eventData = {
-    //   ...event,
-    //   guests: {
-    //     create: [
-    //       { guest: { connect: { id: guest.id } } }
-    //     ]
-    //   }
-    // }
+    return await this.prisma.guest.create({ data });
 
-    // return await this.prisma.event.update({
-    //   where: { alias },
-    //   data: eventData
-    // });
   }
 }

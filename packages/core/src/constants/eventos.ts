@@ -2,7 +2,6 @@ import { IEvent, StatusPresence } from "../evento/model/Event";
 
 const eventos: IEvent[] = [
   {
-    id: 12345678,
     alias: "evento-fullstack",
     password: "senha123",
     name: "Evento de Desenvolvimento Fullstack",
@@ -52,7 +51,6 @@ const eventos: IEvent[] = [
     ],
   },
   {
-    id: 34567890,
     alias: "evento-js-avancado",
     password: "js2024",
     name: "Workshop Avançado de JavaScript",

@@ -5,6 +5,7 @@ import {
   IEventGuest,
   Data,
   IEvent,
+  complementarEvento,
 } from "core";
 import { createContext, useCallback, useEffect, useState } from "react";
 import useAPI from "../hooks/useAPI";
@@ -42,27 +43,17 @@ export function ProvedorContextoEvento(props: any) {
     async function () {
       try {
         console.log('evento-contexto', evento);
-        const user = {
-          id: 1111,
-          name: "Admin",
-          email: "admin@localhost",
-          password: "admin",
-          createAt: Data.formatar(new Date()),
-          updateAt: Data.formatar(new Date()),
-        };
-
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { id, ...eventData } = evento;
+        const { ...eventData } = evento;
 
         const data = {
           ...eventData,
-          userId: user.id,
-          user,
+          userId: 1 // TODO remover apos implementar autenticação
         }
-        // Object.assign(data, { user, userId: user.id });
+        console.log('event-front-request', data);
 
         const eventoCriado = await httpPost("/events", data);
-        router.push("/eventos/sucesso");
+        router.push("/evento/sucesso");
         setEvento({
           ...eventoCriado,
           data: Data.desformatar(eventoCriado.data),
@@ -77,13 +68,10 @@ export function ProvedorContextoEvento(props: any) {
   const carregarEvento = useCallback(
     async function (idOuAlias: string) {
       try {
-        const evento = await httpGet(`/events/${idOuAlias}`);
+        const evento = await httpGet(`/events/alias/${idOuAlias}`);
         console.log('carregar-evento', evento);
         if (!evento) return;
-        setEvento({
-          ...evento,
-          data: Data.desformatar(evento.data),
-        });
+        setEvento(evento);
       } catch (error: any) {
         adicionarErro(error.messagem ?? "Ocorreu um erro inesperado!");
       }
@@ -94,7 +82,7 @@ export function ProvedorContextoEvento(props: any) {
   const adicionarConvidado = useCallback(
     async function () {
       try {
-        await httpPost(`/events/${evento.alias}/guest`, convidado);
+        await httpPost(`/guests/${evento.alias}/guest`, convidado);
         router.push("/convite/obrigado");
       } catch (error: any) {
         adicionarErro(error.messagem ?? "Ocorreu um erro inesperado!");
@@ -107,7 +95,7 @@ export function ProvedorContextoEvento(props: any) {
     async function () {
       try {
         const { valido } = await httpGet(
-          `/events/validate/${evento.alias}/${evento.id}`
+          `/events/validate/${evento.alias}`
         );
         setAliasValido(valido);
       } catch (error: any) {

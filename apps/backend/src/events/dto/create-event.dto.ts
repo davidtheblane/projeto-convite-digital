@@ -7,12 +7,11 @@ import {
   IsNumber,
   IsOptional,
   IsString,
-  IsObject,
 } from 'class-validator';
 
+import { Type } from 'class-transformer';
+
 export class CreateEventDto {
-  @IsNumber()
-  id: number;
 
   @IsString()
   @IsNotEmpty()
@@ -27,6 +26,7 @@ export class CreateEventDto {
   name: string;
 
   @IsString()
+  @IsOptional()
   description: string;
 
   @IsString()
@@ -51,23 +51,21 @@ export class CreateEventDto {
   imageBackground: string;
 
   @IsNumber()
-  expectedAudience?: number;
+  expectedAudience: number;
 
-  @IsDate()
+  @Type(() => Date) // Converts input to a Date object
+  @IsDate() // Validates that the input is a Date
   @IsNotEmpty()
   startDate: Date;
 
-  @IsDate()
+  @Type(() => Date) // Converts input to a Date object
+  @IsDate() // Validates that the input is a Date
+  @IsOptional()
   endDate?: Date;
-
-  @IsObject()
-  @IsNotEmpty()
-  user: object;
 
   @IsNumber()
   @IsNotEmpty()
   userId: number;
-
 
   @IsOptional()
   @IsArray()
@@ -77,8 +75,4 @@ export class CreateEventDto {
   @IsArray()
   offers?: IEventOffer[]
 
-  // //Antes
-  // @IsOptional()
-  // @IsArray()
-  // offers?: number[]
 }

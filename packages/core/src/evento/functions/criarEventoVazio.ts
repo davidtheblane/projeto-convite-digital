@@ -1,11 +1,11 @@
-import { Id } from "../../shared";
+import { Senha } from "../../shared";
 import { IEvent } from "../model/Event";
 
 export default function criarEventoVazio(): Partial<IEvent> {
   return {
-    id: Id.novo(),
     name: "",
     description: "",
+    password: Senha.nova(10),
     startDate: new Date(),
     local: "",
     address: "",

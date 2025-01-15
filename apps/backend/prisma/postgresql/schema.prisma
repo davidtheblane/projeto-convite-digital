@@ -87,12 +87,13 @@ model EventGuest {
   createAt        DateTime        @default(now())
   updateAt        DateTime        @updatedAt
 
-  event           Event           @relation(fields: [eventId], references: [id])
   eventId         Int
-  guest           Guest           @relation(fields: [guestId], references: [id])
   guestId         Int
-  eventOffer      EventOffer?     @relation(fields: [eventOfferId], references: [id])
   eventOfferId    Int?
+
+  event           Event           @relation(fields: [eventId], references: [id])
+  guest           Guest           @relation(fields: [guestId], references: [id])
+  eventOffer      EventOffer?     @relation(fields: [eventOfferId], references: [id])
 
   @@unique([eventId, guestId])
 }

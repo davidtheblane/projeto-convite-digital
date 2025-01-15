@@ -1,7 +1,12 @@
-import { IsArray, IsNotEmpty, IsString } from 'class-validator';
+import { IsArray, IsNotEmpty, IsString, IsNumber, IsDate, IsOptional } from 'class-validator';
 import { IEventGuest } from 'core';
+import { Type } from 'class-transformer';
+
 
 export class CreateGuestDto {
+  // @IsNumber()
+  // id: number;
+
   @IsString()
   @IsNotEmpty()
   name: string;
@@ -11,5 +16,14 @@ export class CreateGuestDto {
   email: string;
 
   @IsArray()
+  @IsOptional()
   events: IEventGuest[]
+
+  // @Type(() => Date)
+  // @IsDate()
+  // createAt: Date
+
+  // @Type(() => Date)
+  // @IsDate()
+  // updateAt: Date
 }
