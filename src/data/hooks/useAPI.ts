@@ -6,15 +6,17 @@ export default function useAPI() {
   const httpGet = useCallback(async function (caminho: string) {
     const uri = caminho.startsWith("/") ? caminho : `/${caminho}`;
     const urlCompleta = `${urlBase}${uri}`;
+    console.log({ urlCompleta })
 
     const resposta = await fetch(urlCompleta);
+    console.log({ resposta })
     return extrairDados(resposta);
   }, []);
 
   const httpPost = useCallback(async function (caminho: string, body?: any) {
     const uri = caminho.startsWith("/") ? caminho : `/${caminho}`;
     const urlCompleta = `${urlBase}${uri}`;
-    console.log('urlCompleta', urlCompleta);
+    console.log({ urlCompleta })
 
     const resposta = await fetch(urlCompleta, {
       method: "POST",
@@ -23,7 +25,7 @@ export default function useAPI() {
       },
       body: body ? JSON.stringify(body) : null,
     });
-    console.log('resposta', resposta);
+    console.log({ resposta });
     return extrairDados(resposta);
   }, []);
 

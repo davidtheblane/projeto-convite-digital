@@ -1,4 +1,4 @@
-import { IEventGuest, IEvent, IGuest, StatusPresence } from "core";
+import { IEvent, IEventGuest, IGuest, StatusPresence } from "@/core";
 import CampoEntrada from "../shared/CampoEntrada";
 import CampoSimNao from "../shared/CampoSimNao";
 

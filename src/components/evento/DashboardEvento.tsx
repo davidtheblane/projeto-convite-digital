@@ -1,11 +1,8 @@
-import { 
-  IEvent,
-  IEventGuest,
-} from "core";
 import InformacoesEvento from "./InformacoesEvento";
 import AcessarViaQrCode from "./AcessarViaQrCode";
 import Estatistica from "../shared/Estatistica";
 import ListaConvidados from "./ListaConvidados";
+import { IEvent, IEventGuest } from "@/core";
 
 export interface DashboardEventoProps {
   evento: IEvent;
@@ -16,7 +13,7 @@ export interface DashboardEventoProps {
 }
 
 export default function DashboardEvento(props: DashboardEventoProps) {
-  const {evento, presentes, ausentes, totalGeral, atualizarListaConvidados} = props;
+  const { evento, presentes, ausentes, totalGeral, atualizarListaConvidados } = props;
 
   return (
     <div className="flex flex-col gap-2">

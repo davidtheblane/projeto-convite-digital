@@ -1,4 +1,4 @@
-import { IEventGuest } from "core";
+import { IEventGuest } from "@/core";
 
 export interface ConvidadoItemProps {
   key: number;

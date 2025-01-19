@@ -1,4 +1,4 @@
-import { IEventGuest } from "core";
+import { IEventGuest } from "@/core";
 import ConvidadoItem from "./ConvidadoItem";
 
 export interface ListaConvidadosProps {
@@ -6,7 +6,7 @@ export interface ListaConvidadosProps {
 }
 
 export default function ListaConvidados(props: ListaConvidadosProps) {
-  const {convidadosEvento} = props;
+  const { convidadosEvento } = props;
   return (
     <div>
       <ul className="flex flex-col gap-2">

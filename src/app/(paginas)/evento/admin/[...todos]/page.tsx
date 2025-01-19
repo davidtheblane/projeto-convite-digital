@@ -2,8 +2,8 @@
 import DashboardEvento from "@/components/evento/DashboardEvento";
 import FormLoginAdmin from "@/components/evento/FormLoginAdmin";
 import FormSenhaEvento from "@/components/evento/FormSenhaEvento";
+import { eventos, IEvent, IEventGuest, IUser } from "@/core";
 import useAPI from "@/data/hooks/useAPI";
-import { IEvent, eventos, IEventGuest, IUser } from "core";
 import { use, useCallback, useEffect, useState } from "react";
 
 export default function PaginaAdminEvento(props: any) {

@@ -4,8 +4,8 @@ import FormConvidado from "@/components/evento/FormConvidado";
 import InformacoesEvento from "@/components/evento/InformacoesEvento";
 import Janela from "@/components/shared/Janela";
 import Processando from "@/components/shared/Processando";
+import { IEvent, StatusPresence } from "@/core";
 import useEvento from "@/data/hooks/useEvento";
-import { IEvent, StatusPresence } from "core";
 import { use, useEffect } from "react";
 
 export default function PaginaConvite(props: any) {

@@ -1,16 +1,9 @@
 "use client";
-import {
-  criarConvidadoVazio,
-  criarEventoVazio,
-  IEventGuest,
-  Data,
-  IEvent,
-  complementarEvento,
-} from "core";
 import { createContext, useCallback, useEffect, useState } from "react";
 import useAPI from "../hooks/useAPI";
 import { useRouter } from "next/navigation";
 import useMensagens from "../hooks/useMensagens";
+import { criarConvidadoVazio, criarEventoVazio, Data, IEvent, IEventGuest } from "@/core";
 
 export interface ContextoEventoProps {
   evento: Partial<IEvent>;
@@ -42,17 +35,8 @@ export function ProvedorContextoEvento(props: any) {
   const salvarEvento = useCallback(
     async function () {
       try {
-        console.log('evento-contexto', evento);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { ...eventData } = evento;
-
-        const data = {
-          ...eventData,
-          userId: 1 // TODO remover apos implementar autenticação
-        }
-        console.log('event-front-request', data);
-
-        const eventoCriado = await httpPost("/events", data);
+        const eventoCriado = await httpPost("/events", evento);
+        console.log('event-front-request', evento);
         router.push("/evento/sucesso");
         setEvento({
           ...eventoCriado,

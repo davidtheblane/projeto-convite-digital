@@ -3,10 +3,10 @@ import InformacoesEvento from "@/components/evento/InformacoesEvento";
 import CopiarClipboard from "@/components/shared/CopiarClipboard";
 import Janela from "@/components/shared/Janela";
 import useEvento from "@/data/hooks/useEvento";
-import { IEvent } from "core";
 import { IconFingerprint, IconLink } from "@tabler/icons-react";
 import AcessarViaQrCode from "@/components/evento/AcessarViaQrCode";
 import { useEffect, useState } from "react";
+import { IEvent } from "@/core";
 
 export default function EventoSucesso() {
   const { evento } = useEvento();
