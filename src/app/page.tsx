@@ -1,4 +1,5 @@
-import LogoGrande from "@/components/template/LogoGrande";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -9,19 +10,10 @@ export default function Home() {
         bg-[url('/background-inicio.svg')] bg-cover
       "
     >
-      <div className="flex flex-col items-center gap-4">
-        <LogoGrande />
-        <p className="text-zinc-500 font-light w-96 leading-6 text-center select-none">
-          Crie e gerencie o convite do seu evento de forma rápida e fácil, sem
-          complicações!
-        </p>
-      </div>
-      <Link href="/evento" className="botao azul text-xl uppercase">
-        Crie o seu Evento
-      </Link>
-      <Link href="/evento/login" className="botao preto text-sm uppercase">
-        Acessar meu evento
-      </Link>
+      <Image src="/logo-white.svg" width={200} height={200} alt="Logo1" />
+      <Button size={"lg"} className="text-3xl px-10 py-7" asChild>
+        <Link href={"/login"}>Login</Link>
+      </Button>
     </div>
   );
 }
