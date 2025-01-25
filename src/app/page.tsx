@@ -14,6 +14,9 @@ export default function Home() {
       <Button size={"lg"} className="text-3xl px-10 py-7" asChild>
         <Link href={"/login"}>Login</Link>
       </Button>
+      <Button size={"lg"} className="text-xl px-10 py-7" asChild>
+        <Link href={"/register"}>Cadastro</Link>
+      </Button>
     </div>
   );
 }

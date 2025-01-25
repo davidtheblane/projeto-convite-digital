@@ -17,6 +17,9 @@ export interface UserContextProps {
   loading: boolean;
   error: string | undefined;
 
+  createUser: (
+    data: Omit<IUser, "id" | "createdAt" | "updatedAt">
+  ) => Promise<boolean>;
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
   isAuthenticated: () => Promise<void>;
@@ -35,6 +38,28 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
 
   const { httpGet, httpPost, extrairDados } = useAPI();
   const { salvarItem, removerItem } = useLocalStorage();
+
+  const createUser = useCallback(
+    async (data: Omit<IUser, "id" | "createdAt" | "updatedAt">) => {
+      setLoading(true);
+      setError(undefined);
+
+      return await httpPost("users", data)
+        .then(async (res) => {
+          return res.ok;
+        })
+        .catch((error) => {
+          console.log("error", error);
+          setError(error.messagem);
+          return false;
+        })
+        .finally(() => {
+          setLoading(false);
+          return true;
+        });
+    },
+    [httpPost]
+  );
 
   const login = useCallback(
     async (email: string, password: string) => {
@@ -91,11 +116,12 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       token,
       loading,
       error,
+      createUser,
       login,
       logout,
       isAuthenticated,
     }),
-    [user, token, loading, error, login, logout, isAuthenticated]
+    [user, token, loading, error, createUser, login, logout, isAuthenticated]
   );
 
   return (

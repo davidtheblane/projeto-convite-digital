@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useUser from "@/core/hooks/use-user";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Email inválido" }),
@@ -95,6 +96,12 @@ const Login = () => {
           </form>
         </Form>
       </CardContent>
+      <div className="flex flex-col gap-2 justify-center items-center text-sm">
+        ou
+        <Link href={"/register"} className="underline">
+          Cadastre-se
+        </Link>
+      </div>
       <CardFooter>
         {error && <p className="text-red-500">{error}</p>}
       </CardFooter>
