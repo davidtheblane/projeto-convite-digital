@@ -15,15 +15,14 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
-import React from "react";
 import { useForm } from "react-hook-form";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import useUser from "@/core/hooks/use-user";
 import { useRouter } from "next/navigation";
+import { welcomeMail } from "@/hooks/use-mail";
 
 const formSchema = z
   .object({
@@ -70,12 +69,13 @@ const UserRegister = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     const { name, email, password } = values;
     const success = await createUser({ name, email, password });
-    toast({
-      title: "Sucesso!",
-      description: "Cadastro realizado com sucesso",
-    });
 
     if (success) {
+      toast({
+        title: "Sucesso!",
+        description: "Cadastro realizado com sucesso",
+      });
+      await welcomeMail(name, email);
       router.push("/login");
     }
   };
