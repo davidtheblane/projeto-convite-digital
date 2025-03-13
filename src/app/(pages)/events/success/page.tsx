@@ -3,8 +3,10 @@
 import CardCustomForm from "@/components/custom/card-custom-form";
 import useEvent from "@/core/hooks/use-events";
 import React from "react";
-import { LabelCustom, LabelInputRO } from "@/components/custom/label-custom";
+import { LabelCustom } from "@/components/custom/label-custom";
 import { formatDate } from "@/lib/utils";
+import CopyButton from "@/components/custom/copy-button";
+import { Link2, UserPlus } from "lucide-react";
 
 const EventSuccess = () => {
   const { event } = useEvent();
@@ -54,11 +56,26 @@ const EventSuccess = () => {
               Use o link abaixo para convidar seus amigos!
             </span>
           </div>
-          <div className="flex flex-col gap-4 items-center justify-center w-full">
-            <LabelInputRO
-              label="Link pra convidar:"
-              text={`${window.location.origin}/invite/${event?.alias}`}
-            />
+          <div className="w-full p-6 md:col-span-3">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center text-primary">
+                <UserPlus className="mr-3 h-5 w-5" />
+                <h3 className="font-semibold text-lg">Convidar Pessoas</h3>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3 bg-muted p-4 rounded-lg">
+              <div className="flex items-center gap-2 flex-1 overflow-hidden">
+                <Link2 className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+                <p className="text-sm font-medium truncate">
+                  {`${window.location.origin}/invite/${event?.alias}`}
+                </p>
+              </div>
+              <CopyButton
+                textToCopy={`${window.location.origin}/invite/${event?.alias}`}
+                tootipText="Copiar link de convite"
+              />
+            </div>
           </div>
         </div>
       }

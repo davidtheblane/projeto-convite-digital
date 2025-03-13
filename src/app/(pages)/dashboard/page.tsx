@@ -8,17 +8,17 @@ import { Card } from "@/components/ui/card";
 import { PlusIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import withAuth from "@/core/hoc/withAuth";
+import TiltedCardMy from "@/components/reactbits-ui/tilted-card-my";
 
 const Dashboard = () => {
   const router = useRouter();
-  const { user, token, isAuthenticated } = useUser();
+  const { user, token } = useUser();
   const { httpGet, extrairDados } = useAPI();
   const [events, setEventsList] = React.useState<IEvent[]>([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
-      await isAuthenticated();
-
       if (token)
         await httpGet("events", token).then(async (response) => {
           setEventsList((await extrairDados(response)) as IEvent[]);
@@ -26,7 +26,7 @@ const Dashboard = () => {
     };
 
     fetchEvents();
-  }, [httpGet, token, router, isAuthenticated, extrairDados]);
+  }, [httpGet, token, router, extrairDados]);
 
   return (
     <div className="flex grow justify-center min-h-[300px] flex-col items-center">
@@ -37,14 +37,19 @@ const Dashboard = () => {
         {events && events.length > 0 && (
           <>
             {events.map((event) => (
-              <EventCard
-                routeTo={`/events/${event.alias}`}
+              <TiltedCardMy
                 key={event.id}
-                title={event.name || ""}
-                subTitle={event.alias || ""}
-                date={event.startDate}
-                imageBackground={event.imageBackground}
-              />
+                showTooltip={false}
+                containerClassName="max-w-96"
+              >
+                <EventCard
+                  routeTo={`/events/${event.alias}`}
+                  title={event.name || ""}
+                  subTitle={event.alias || ""}
+                  date={event.startDate}
+                  imageBackground={event.imageBackground}
+                />
+              </TiltedCardMy>
             ))}
           </>
         )}
@@ -65,4 +70,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default withAuth(Dashboard);

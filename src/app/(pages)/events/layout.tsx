@@ -5,7 +5,11 @@ const LayoutPages = ({
 }: Readonly<{
   children: React.ReactNode;
 }>) => {
-  return <EventProvider>{children}</EventProvider>;
+  return (
+    <EventProvider>
+      <div className="container">{children}</div>
+    </EventProvider>
+  );
 };
 
 export default LayoutPages;

@@ -95,15 +95,13 @@ const Login = () => {
             </Button>
           </form>
         </Form>
-      </CardContent>
-      <div className="flex flex-col gap-2 justify-center items-center text-sm">
-        ou
-        <Link href={"/register"} className="underline">
-          Cadastre-se
-        </Link>
-      </div>
-      <CardFooter>
         {error && <p className="text-red-500">{error}</p>}
+      </CardContent>
+      <CardFooter className="flex flex-col justify-center items-center">
+        ou
+        <Link href="/register">
+          <Button variant={"link"}>Cadastrar</Button>
+        </Link>
       </CardFooter>
     </Card>
   );

@@ -1,20 +1,22 @@
+import { decryptData, encryptData } from "@/utils/crypto";
 import { useCallback } from "react";
 
-export default function useLocalStorage() {
-  const salvarItem = useCallback((chave: string, valor: unknown) => {
-    localStorage.setItem(chave, JSON.stringify(valor));
+const useLocalStorage = () => {
+  const obertItem = useCallback((key: string) => {
+    const value = localStorage.getItem(key) || undefined;
+    if (!value) return undefined;
+    return decryptData(value);
+  }, []);
+  const salvarItem = useCallback((key: string, value: string) => {
+    localStorage.setItem(key, encryptData(value));
+  }, []);
+  const removerItem = useCallback((key: string) => {
+    localStorage.removeItem(key);
   }, []);
 
-  const obterItem = useCallback((chave: string) => {
-    const valor = localStorage.getItem(chave);
-    return valor ? JSON.parse(valor) : null;
-  }, []);
+  const removeLocalStorage = () => localStorage.clear();
 
-  const removerItem = useCallback((chave: string) => {
-    localStorage.removeItem(chave);
-  }, []);
+  return { obertItem, salvarItem, removerItem, removeLocalStorage };
+};
 
-  return { salvarItem, obterItem, removerItem };
-}
-
-export const removeLocalStorage = () => localStorage.clear();
+export default useLocalStorage;

@@ -3,13 +3,13 @@ import React, {
   createContext,
   ReactNode,
   useCallback,
+  useEffect,
   useMemo,
   useState,
 } from "react";
 import { IUser } from "../interfaces/user.interface";
 import useAPI from "../hooks/use-api";
 import useLocalStorage from "../hooks/use-local-storage";
-import { useRouter } from "next/navigation";
 
 export interface UserContextProps {
   user: IUser | undefined;
@@ -22,7 +22,6 @@ export interface UserContextProps {
   ) => Promise<boolean>;
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => void;
-  isAuthenticated: () => Promise<void>;
 }
 
 export const UserContext = createContext<UserContextProps | undefined>(
@@ -30,14 +29,37 @@ export const UserContext = createContext<UserContextProps | undefined>(
 );
 
 const UserProvider = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
   const [user, setUser] = useState<IUser | undefined>(undefined);
   const [token, setToken] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | undefined>(undefined);
 
   const { httpGet, httpPost, extrairDados } = useAPI();
-  const { salvarItem, removerItem } = useLocalStorage();
+  const { obertItem, salvarItem, removerItem } = useLocalStorage();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const token = obertItem("@token");
+
+      try {
+        const response = await httpGet("auth/me", token);
+
+        if (response.ok) {
+          const data = await extrairDados(response);
+          setUser(data);
+          setToken(token);
+          return;
+        }
+        throw response;
+      } catch (error) {
+        throw error;
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, [extrairDados, httpGet, obertItem]);
 
   const createUser = useCallback(
     async (data: Omit<IUser, "id" | "createdAt" | "updatedAt">) => {
@@ -77,7 +99,6 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
           setToken(access_token);
 
           salvarItem("@token", access_token);
-          salvarItem("@user", user);
           return true;
         })
         .catch((error) => {
@@ -98,17 +119,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
     setToken(undefined);
 
     removerItem("@token");
-    removerItem("@user");
   }, [removerItem]);
-
-  const isAuthenticated = useCallback(async () => {
-    console.log({ user, token });
-    if (!user || !token) return router.push("/login");
-
-    const res = await httpGet("healthCheck", token);
-
-    if (!res.ok) return router.push("/login");
-  }, [user, token, router, httpGet]);
 
   const contextValue = useMemo(
     () => ({
@@ -119,9 +130,8 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
       createUser,
       login,
       logout,
-      isAuthenticated,
     }),
-    [user, token, loading, error, createUser, login, logout, isAuthenticated]
+    [user, token, loading, error, createUser, login, logout]
   );
 
   return (

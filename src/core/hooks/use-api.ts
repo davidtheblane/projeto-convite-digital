@@ -12,7 +12,6 @@ export default function useAPI() {
       : {};
 
     const resposta = await fetch(urlCompleta, { headers });
-    console.log({ resposta });
     return resposta;
   }, []);
 

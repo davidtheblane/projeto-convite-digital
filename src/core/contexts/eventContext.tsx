@@ -9,6 +9,7 @@ import React, {
 import { IEvent } from "../interfaces/event.interface";
 import useAPI from "../hooks/use-api";
 import useUser from "../hooks/use-user";
+import { typeEventFormSchema } from "@/utils/definitions";
 
 interface EventContextData {
   event: IEvent | undefined;
@@ -16,9 +17,7 @@ interface EventContextData {
   loading: boolean;
   error: string | undefined;
 
-  createEvent: (
-    data: Omit<IEvent, "id" | "createAt" | "updateAt">
-  ) => Promise<IEvent | undefined>;
+  createEvent: (data: typeEventFormSchema) => Promise<IEvent | undefined>;
   getEvents: () => Promise<void>;
   getEventByAlias: (alias: string) => Promise<IEvent>;
 }
@@ -38,7 +37,7 @@ export const EventProvider = ({ children }: { children: ReactNode }) => {
   const [error, setError] = useState<string | undefined>(undefined);
 
   const createEvent = useCallback(
-    async (data: Omit<IEvent, "id" | "createAt" | "updateAt">) => {
+    async (data: typeEventFormSchema) => {
       setLoading(true);
       setError(undefined);
       try {

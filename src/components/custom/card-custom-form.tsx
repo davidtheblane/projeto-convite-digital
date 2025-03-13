@@ -3,6 +3,8 @@
 import React from "react";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import Image from "next/image";
+import { Button } from "../ui/button";
+import { XIcon } from "lucide-react";
 
 const CardCustomForm = ({
   image,
@@ -45,6 +47,12 @@ const CardCustomForm = ({
             <span className="text-xs font-bold">{subTitle}</span>
           </div>
         </div>
+        <Button
+          className="absolute top-3 right-3 bg-white/20  hover:bg-white z-20"
+          onClick={() => window.history.back()}
+        >
+          <XIcon />
+        </Button>
       </CardHeader>
       <CardContent>{content}</CardContent>
     </Card>

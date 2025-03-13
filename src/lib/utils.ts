@@ -18,8 +18,8 @@ export function sanitizeString(str: string) {
 }
 
 export const formatDate = (date: string | number | Date) => {
-  console.log({ date });
   return format(date, "d 'de' MMMM 'de' yyyy 'às' HH:mm", {
     locale: ptBR,
   });
 };
+

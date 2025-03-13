@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 
 const LayoutPages = ({
@@ -7,8 +6,7 @@ const LayoutPages = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center gap-10 bg-[url('/background.png')] bg-cover py-5">
-      <Image src="/logo-white.svg" width={200} height={200} alt="Logo1" />
+    <div className="min-h-screen flex flex-col items-center gap-5 bg-[url('/background.png')] bg-cover py-5 pt-24">
       <main className="flex flex-col max-w-6xl container">{children}</main>
     </div>
   );

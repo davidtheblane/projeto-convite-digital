@@ -23,6 +23,7 @@ import { Button } from "@/components/ui/button";
 import useUser from "@/core/hooks/use-user";
 import { useRouter } from "next/navigation";
 import { welcomeMail } from "@/hooks/use-mail";
+import Link from "next/link";
 
 const formSchema = z
   .object({
@@ -153,9 +154,13 @@ const UserRegister = () => {
             </Button>
           </form>
         </Form>
-      </CardContent>
-      <CardFooter>
         {error && <p className="text-red-500">{error}</p>}
+      </CardContent>
+      <CardFooter className="flex flex-col justify-center items-center">
+        ou
+        <Link href="/login">
+          <Button variant={"link"}>Login</Button>
+        </Link>
       </CardFooter>
     </Card>
   );
