@@ -1,8 +1,17 @@
 "use client";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import React, { JSX, Usable, use, useEffect, useState } from "react";
 
-const ConfirmQuest = ({ params }: { params: Usable<never> }) => {
+const ConfirmQuest = ({
+  params,
+  searchParams,
+}: {
+  params: Usable<never>;
+  searchParams: Usable<never>;
+}) => {
   const { status } = use(params);
+  const { linkGift = "Link" } = use(searchParams);
 
   const [text, setText] = useState<JSX.Element>();
 
@@ -35,7 +44,9 @@ const ConfirmQuest = ({ params }: { params: Usable<never> }) => {
           ? "trazer para nossa festa!"
           : "nos presentear!"}
       </span>
-      <div>LINK MAGALU</div>
+      <Link href={linkGift} target="_blank">
+        <Button variant="link">{linkGift}</Button>
+      </Link>
     </div>
   );
 };

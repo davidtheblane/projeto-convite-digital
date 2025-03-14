@@ -8,6 +8,7 @@ export interface IEvent {
   address?: string | null;
   monetize: boolean;
   keyPix?: string;
+  linkGifts?: string;
   image: string;
   imageBackground: string;
   expectedAudience?: number;

@@ -101,7 +101,12 @@ export default function InvitePage({ params }: any) {
       await httpPost("event-guest", { ...values, guestId, eventId: event?.id })
     );
 
-    if (resp) router.push("/invite/confirm/" + values.status.toLowerCase());
+    if (resp)
+      router.push(
+        "/invite/confirm/" +
+          values.status.toLowerCase() +
+          `?linkGift=${event?.linkGifts}`
+      );
   };
 
   if (!event) {
