@@ -52,7 +52,7 @@ const UserProvider = ({ children }: { children: ReactNode }) => {
         }
         throw response;
       } catch (error) {
-        throw error;
+        console.log({ error });
       } finally {
         setLoading(false);
       }

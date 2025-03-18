@@ -73,7 +73,7 @@ const EventSuccess = () => {
               </div>
               <CopyButton
                 textToCopy={`${window.location.origin}/invite/${event?.alias}`}
-                tootipText="Copiar link de convite"
+                tooltipText="Copiar link de convite"
               />
             </div>
           </div>

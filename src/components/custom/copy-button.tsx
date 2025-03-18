@@ -12,10 +12,13 @@ import {
 
 interface CopyButtonProps {
   textToCopy: string;
-  tootipText?: string;
+  tooltipText?: string;
 }
 
-const CopyButton = ({ textToCopy, tootipText = "Copiar" }: CopyButtonProps) => {
+const CopyButton = ({
+  textToCopy,
+  tooltipText = "Copiar",
+}: CopyButtonProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -51,11 +54,11 @@ const CopyButton = ({ textToCopy, tootipText = "Copiar" }: CopyButtonProps) => {
             ) : (
               <Copy className="h-4 w-4" />
             )}
-            <span className="sr-only">{copied ? "Copiado" : tootipText}</span>
+            <span className="sr-only">{copied ? "Copiado" : tooltipText}</span>
           </Button>
         </TooltipTrigger>
         <TooltipContent side="top">
-          <p>{copied ? "Copiado!" : tootipText}</p>
+          <p>{copied ? "Copiado!" : tooltipText}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

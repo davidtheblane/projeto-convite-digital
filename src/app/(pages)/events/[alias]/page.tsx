@@ -182,7 +182,7 @@ const EventDetail = ({ params }: any) => {
                       </div>
                       <CopyButton
                         textToCopy={event?.keyPix || ""}
-                        tootipText="Copiar chave PIX"
+                        tooltipText="Copiar chave PIX"
                       />
                     </div>
                   </div>
@@ -214,7 +214,7 @@ const EventDetail = ({ params }: any) => {
                   </div>
                   <CopyButton
                     textToCopy={invitationLink}
-                    tootipText="Copiar link de convite"
+                    tooltipText="Copiar link de convite"
                   />
                 </div>
               </div>
