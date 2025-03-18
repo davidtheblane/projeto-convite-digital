@@ -82,7 +82,10 @@ const UserRegister = () => {
   };
 
   return (
-    <Card title="register" className="border-slate-500 w-full ">
+    <Card
+      title="register"
+      className="border-0 md:border md:border-slate-500 w-full min-h-svh md:min-h-full"
+    >
       <CardHeader className="flex flex-col justify-center items-center">
         <CardTitle>Vamos criar o seu cadastro! 😊</CardTitle>
       </CardHeader>

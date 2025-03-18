@@ -7,7 +7,7 @@ const LayoutPages = ({
 }>) => {
   return (
     <EventProvider>
-      <div className="container">{children}</div>
+      <div className="container px-2">{children}</div>
     </EventProvider>
   );
 };

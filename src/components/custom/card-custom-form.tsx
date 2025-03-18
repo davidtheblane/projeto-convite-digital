@@ -22,15 +22,15 @@ const CardCustomForm = ({
   content: React.ReactNode;
 }) => {
   return (
-    <Card className="max-w-5xl w-full mx-auto flex flex-col gap-5 overflow-hidden">
-      <CardHeader className="relative h-44 ">
+    <Card className="max-w-5xl w-full mx-auto flex flex-col gap-5 overflow-hidden border-0 md:border">
+      <CardHeader className="relative h-full md:h-44">
         <Image
           src={bgImage}
           alt={`Imagem de fundo`}
           fill
           style={{ objectFit: "cover" }}
         />
-        <div className="flex gap-7 p-4 items-center z-10">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-7 p-0 md:p-4 items-center z-10">
           <div className="w-28 h-28 relative">
             <Image
               src={image}
